@@ -1,0 +1,23 @@
+ion-content.applogin {
+    background: url('/img/background.png') center center;
+    form {
+        position: absolute;
+        left: 15%;
+        bottom: 10%;
+    }
+    .button.button-facebook,
+    .button.button-twitter {
+        width: 45%;
+        float: left;
+        padding-top: 4px;
+        margin-bottom: 17px;
+    }
+    .button.button-facebook i,
+    .button.button-twitter i {
+        font-size: 32px;
+    }
+    .button.button-facebook {
+        margin-right: 32px;
+        padding-top: 2px;
+    }
+}

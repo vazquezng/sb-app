@@ -1,0 +1,11 @@
+<ion-view hide-nav-bar="true">
+    <div class="bg-image-applogin">
+        <img src="./img/logo.png" class="tc-logo-login" />
+    </div>
+    <ion-content scrollbar-x="false" scrollbar-y="false" scroll="false" class="no-header applogin">
+        <form name="subs" ng-submit="save(subs)">
+            <a class="button button-facebook" ng-click="vm.facebookSignIn()"><i class="ion-social-facebook"></i>Login with Facebook</a>
+            <a class="button button-twitter" ng-click="vm.twitterSignIn()"><i class="ion-social-twitter"></i>Login with Twitter</a>
+        </form>
+    </ion-content>
+</ion-view>

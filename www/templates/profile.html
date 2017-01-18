@@ -1,0 +1,109 @@
+<ion-view view-title='<img src="./img/logo-header.png"/>'>
+    <ion-content class="profile">
+        <h1>Tu perfil</h1>
+        <p>Completá los datos de tu perfil para contactarte con otros jugadores.</p>
+        <form>
+            <div class="row photo">
+                <div class="col" style="position:relative;">
+                    <div class="back-profile">
+                        <img src="./img/back-profile.png" />
+                    </div>
+                    <img src="./img/profile-blank.png" class="image-profile" style="width: 166px;height: auto;" />
+                </div>
+                <div class="col" style="padding-top: 14%;padding-left: 4%;">
+                    <div style="margin-bottom: 10%;background: url('./img/camare.png') left center; background-repeat:no-repeat">
+                        <span style="padding-left: 35px;">Tomar Foto</span>
+                    </div>
+                    <hr>
+                    <div style="background: url('./img/image.png') left center; background-repeat:no-repeat">
+                        <span style="padding-left: 35px;">Seleccionar</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <input type="number" ng-model="vm.profile.years" />
+                    <label>EDAD</label>
+                </div>
+                <div class="col">
+                    <input type="text" ng-model="vm.profile.sex" />
+                    <label>SEXO</label>
+                </div>
+            </div>
+
+            <div class="row ">
+                <div class="col">
+                    <input type="text" ng-model="vm.profile.country" />
+                    <label>PAIS</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <input type="text" ng-model="vm.profile.city" />
+                    <label>CIUDAD</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <input type="text" ng-model="vm.profile.level" />
+                    <label>NIVEL DE JUEGO</label>
+                </div>
+                <div class="col">
+                    <input type="text" ng-model="vm.profile.itn" />
+                    <label>ITN</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input type="text" ng-model="vm.profile.coach" />
+                    <label>COACH/PROFESOR</label>
+                </div>
+            </div>
+            <div class="row" style="    margin-top: 4px;">
+                <a style="width: 50%;padding-bottom: 5px;border-bottom: 1px solid #00a5d7;"><img src="./img/calendar.png" /></a>
+            </div>
+            <div class="row">
+                <label>DISPONIBILIDAD</label>
+            </div>
+            <div class="row" style="    margin-top: 3px;">
+                <div class="range" style="border: none;width: 100%;padding-left: 0;">
+                    <label>2km</label>
+                    <input type="range" name="distance" style="border-bottom: none;" ng-model="vm.profile.distance">
+                    <label>{{vm.profile.distance}}km</label>
+                </div>
+            </div>
+            <div class="row" style="margin-top: -11px;
+    margin-bottom: 10px;">
+                <label>DISTANCIA PARA JUGAR UN PARTIDO</label>
+            </div>
+
+            <div class="row">
+                <div class="list" style="width:100%;margin-top:12px;margin-bottom: 2px;">
+                    <label class="item item-input item-select" style="height: 30px;    height: 30px;border: none;border-bottom: 1px solid #00a5d7;">
+                        <select style="right: inherit;">
+                            <option>XXX</option>
+                            <option selected>YYY</option>
+                            <option>NNN</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <label>SOS SOCIO DE ALGUN CLUB?</label>
+            </div>
+            <div class="row" style="margin-top: 11px;">
+                <label>ABOUT</label>
+            </div>
+            <div class="row">
+                <textarea style="width: 100%;min-height: 100px;border: 1px solid #00a5d7;margin-top: 4px;resize: none;"></textarea>
+            </div>
+
+            <button class="button button-block button-outline button-calm">
+                Guardar
+            </button>
+        </form>
+    </ion-content>
+</ion-view>
