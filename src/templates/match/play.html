@@ -1,0 +1,44 @@
+<ion-view view-title='<img src="./img/logo-header.png"/>'>
+    <ion-content class="play profile">
+        <h1>Quiero Jugar</h1>
+        <div id="imageBox">
+            <div class="centerBracket">
+                <div class="text">
+                    Aquí podrás visualizar los partidos que fueron creados por otros usuarios, quienes cumplen <span>tus mismos requisitos</span> y están en la búsqueda de <span>jugadores como vos.</span>
+                </div>
+            </div>
+        </div>
+        <div class="subtitleImg"></div>
+        <div class="usersGrid container">
+            <div>
+                <div class="userBox col-xs-3" ng-repeat="match in vm.matchs">
+                    <div class="centerBracket">
+                        <div class="level-1">
+                            <div class="imgContainer">
+                                <img ng-src="{{match.user.image}}" ng-if="::match.user.image!= '' && match.user.image!= null" />
+                                <img ng-src="./img/profile/profile-blank.png" ng-if="::match.user.image== '' || match.user.image== null" />
+                            </div>
+                        </div>
+                        <div class="level-2">
+                            <div class="userName">
+                                {{match.user.first_name}} {{match.user.last_name}}
+                            </div>
+                            <div class="separator"></div>
+                            <div class="dateTime">
+                                <span>{{match.date}} - {{match.hour}}</span>
+                                <!--span>17.12.16 - 16:30</span-->
+                            </div>
+                            <div class="clubName" ng-bind="match.club_name"></div>
+                            <div class="separator"></div>
+                            <div class="address" ng-bind="match.address.substr(0, 30)"></div>
+                            <div class="viewDetail"><input type="image" name="submit" src="./img/play/eye-icon.png" border="0" alt="Submit" ng-click="vm.detail(match.id)"></div>
+                        </div>
+                        <div class="level-3">
+                            <img class="mapImg" src="/img/match/mock-map.png" ng-click="vm.openMaps(match.address_lat, match.address_lng)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,100 @@
+.myCalifications{
+    .titleDiv {
+        height: 186px;
+        /*padding-top: 100px;*/
+        background-image: url(../img/title-sides-gray.png);
+        background-repeat: repeat-x;
+        text-align: center;
+        .centerTitle {
+            width: 772px;
+            height: 100%;
+            margin: auto;
+            display: inline-block;
+            background-image: url(../img/center-title-gray.png);
+            background-repeat: no-repeat;
+            vertical-align: middle;
+            font-family: CookieRegular;
+            font-size: 60px;
+            padding-top: 50px;
+            color: #00a5d7;
+        }
+    }
+    .container{
+        margin-bottom: 50px;
+        .boxItem{
+            background-color: #f2f2f2;
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            .imgContainer {
+                padding: 5px;
+                width: 139px;
+                height: 139px;
+                background-image: url(../img/profile/back-profile.png);
+                background-size: contain;
+                background-repeat: no-repeat;
+                display: inline-block;
+                vertical-align: top;
+                img {
+                    margin-top: 10px;
+                    width: 122px;
+                    height: 122px;
+                    border-radius: 60px;
+                }
+            }
+            .textContainer{
+                display: inline-block;
+                width: 87%;
+                .boxTitle{
+                    width: 100%;
+                    height: 29px;
+                    border-bottom: 1px solid #818184;
+                    .userName{
+                        display: inline-block;
+                        color: #20a3d4;
+                        font-family: RobotoLight;
+                        font-size: 18px;
+                    }
+                    .dateTime{
+                        float: right;
+                        font-family: CookieRegular;
+                        font-size: 20px;
+                    }
+                }
+                .comment{
+                    display: inline-block;
+                    width: 90%;
+                    height: 100px;
+                    margin-top: 10px;
+                    .text, img{
+                        display: inline-block;
+                    }
+                    .closeQT{
+                        float: right;
+                        margin-top: 30px;
+                        margin-right: 10px;
+                    }
+                }
+                .btnContainer{
+                    display: inline-block;
+                    height: 40px;
+                    text-align: right;
+                    vertical-align: bottom;
+                    float: right;
+                    margin-top: 60px;
+                }
+            }
+        }
+        .info{
+            height: 400px;
+            text-align: center;
+            font-family: RobotoLight;
+            font-size: 18px;
+            margin: auto;
+            span{
+                padding-top: 15%;
+                display: block;
+            }
+        }
+    }
+}

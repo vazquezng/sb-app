@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+    <script type="text/javascript">
+        window.ENV = '<%= htmlWebpackPlugin.options.ENVIRONMENT %>';
+        window.URL_BUCKET = '<%= htmlWebpackPlugin.options.URL_BUCKET %>';
+        //window.hash = '<%=htmlWebpackPlugin.options.hash %>';
+        window.API_URL = '<%=htmlWebpackPlugin.options.URL_API %>';
+        window.FACEBOOK_ID = '<%=htmlWebpackPlugin.options.FACEBOOK_ID %>';
+    </script>
+    <link rel="manifest" href="manifest.json">
+
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+
+    <link href="./css/ionic.app.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/autocomplete.css?v=<%=htmlWebpackPlugin.options.hash %>" rel="stylesheet" type="text/css">
+    <link href="./css/rzslider.min.css?v=<%=htmlWebpackPlugin.options.hash %>" rel="stylesheet" type="text/css">
+    <link href="./css/cookie_regular.css?v=<%=htmlWebpackPlugin.options.hash %>" rel="stylesheet" type="text/css">
+    <link href="./fonts/opensans/open_sans-regular.css" rel="stylesheet" type="text/css">
+    <link href="./fonts/roboto/roboto.css" rel="stylesheet" type="text/css">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!--script src="./lib/ng-cordova-oauth/dist/ng-cordova-oauth.min.js"></script-->
+
+    <!-- your app's js -->
+    <script src="//maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDZOdwsf3vZEFQws7WldOWKeibaWiMjJCg"></script>
+    <script type="text/javascript" src="<%=htmlWebpackPlugin.options.CDN + webpack.assetsByChunkName.main %>"></script>
+</head>
+
+<body>
+    <ion-nav-view></ion-nav-view>
+</body>
+
+</html>

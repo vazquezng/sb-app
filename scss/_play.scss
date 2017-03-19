@@ -1,0 +1,380 @@
+.play {
+    .titleDiv {
+        height: 186px;
+        /*padding-top: 100px;*/
+        background-image: url(../img/title-sides-gray.png);
+        background-repeat: repeat-x;
+        text-align: center;
+        .centerTitle {
+            width: 772px;
+            height: 100%;
+            margin: auto;
+            display: inline-block;
+            background-image: url(../img/center-title-gray.png);
+            background-repeat: no-repeat;
+            font-family: CookieRegular;
+            font-size: 60px;
+            padding-top: 50px;
+            color: #00a5d7;
+        }
+    }
+    .dateTime {
+        font-size: 27px;
+        font-family: CookieRegular;
+        font-weight: bold;
+    }
+    #imageBox {
+        margin: auto;
+        margin-top: 50px;
+        .centerBracket {
+            display: block;
+            text-align: center;
+            img#profileImg {
+                margin-top: 66px;
+                margin-left: 236px;
+            }
+            #uploadFileBtn {
+                position: absolute;
+                margin-top: -100px;
+                margin-left: 500px;
+                color: #5ca3d4;
+                font-size: 28px;
+            }
+            .text {
+                margin: auto;
+                font-size: 16px;
+                color: #818184;
+                span {
+                    font-weight: bold;
+                }
+            }
+        }
+        #inputAvailability {
+            background-image: url(../img/profile/calendar-time.png);
+            background-repeat: no-repeat;
+            background-size: 30px;
+            padding-left: 30px;
+        }
+    }
+    .usersGrid {
+        margin: auto;
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        font-size: 14px;
+        .userBox {
+            margin-top: 2%;
+            .centerBracket {
+                display: flex;
+                border-bottom: 1px solid #bbbbbb;
+                    justify-content: space-between;
+                .separator {
+                    border-bottom: 1px solid #20a3d4;
+                    width: 70%;
+                    display: block;
+                    height: 1px;
+                    margin: auto;
+                }
+                .level-1 {
+                    .imgContainer {
+                        margin: auto;
+                        width: 80px;
+                        height: 80px;
+                        margin-bottom: 20px;
+                        background-image: url(../img/profile/back-profile.png);
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        img {
+                            margin-top: 8px;
+                            width: 80px;
+                            height: 80px;
+                            border-radius: 150px;
+                        }
+                    }
+                }
+                .level-2 {
+                    margin-bottom: 20px;
+                    padding-right: 5px;
+                    .userName {
+                        font-family: RobotoLight;
+                        font-size: 14px;
+                        font-weight: bold;
+                        color: #414142;
+                    }
+                    .dateTime {
+                        font-size: 14px;
+                    }
+                    .clubName {
+                        color: #414142;
+                        font-size: 10px;
+                        text-transform: uppercase;
+                        font-family: RobotoMedium;
+                    }
+                    .address {
+                        font-family: RobotoLight;
+                        font-size: 11px;
+                        font-weight: bold;
+                        color: #414142;
+                        line-height: 15px;
+                    }
+                    .viewDetail {
+                        input {
+                            width: 35px;
+                            float: right;
+                            margin-right: 0px;
+                        }
+                    }
+                }
+                .level-3 {
+                  width: 100px;
+                  overflow: hidden;
+                  height: 100%;
+                    .mapImg {
+                        overflow: hidden;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+    span {
+        color: #20a3d4;
+    }
+    .subtitleImg {
+        width: 100%;
+        height: 90px;
+        background-image: url(../img/play/play.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
+
+.modalDetail {
+    text-align: center;
+    padding: 4px !important;
+    .popup-header {
+        font-size: 27px;
+        font-family: CookieRegular;
+        line-height: 17px;
+        width: 430px;
+        margin: auto;
+        img {
+            margin-left: 5px;
+            margin-right: 5px;
+            height: 10px;
+            vertical-align: super;
+        }
+    }
+    .modal-content {
+        background-color: #fff;
+        padding: 0;
+        padding-bottom: 20px;
+        border-radius: 5px;
+        border: #f5f5f5 solid 4px;
+    }
+    .modal-header {
+        padding: 0;
+        border-bottom: none;
+        .close {
+            opacity: 1;
+            margin-top: -4px;
+            margin-right: -4px;
+            height: 35px;
+        }
+    }
+    .modal-body {
+        height: 500px;
+        overflow-y: scroll;
+    }
+    span {
+        color: #20a3d4;
+    }
+    .dateTime {
+        font-size: 27px;
+        font-family: CookieRegular;
+        font-weight: bold;
+    }
+    .separator {
+        border-bottom: 1px solid #20a3d4;
+        width: 70%;
+        display: block;
+        height: 1px;
+        margin: auto;
+    }
+    .imgContainer {
+        margin: auto;
+        width: 120px;
+        height: 128px;
+        margin-bottom: 20px;
+        background-image: url(../img/profile/back-profile.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        img {
+            margin-top: 8px;
+            width: 116px;
+            height: 116px;
+            border-radius: 150px;
+        }
+    }
+    .userInformation {
+        margin-bottom: 50px;
+        .level-1 {
+            margin-top: 10px;
+            .imgContainer {
+                width: 172px;
+                height: 175px;
+                img {
+                    margin-top: 13px;
+                    width: 162px;
+                    height: 162px;
+                    border-radius: 150px;
+                }
+            }
+        }
+        .level-2 {
+            width: 300px;
+            margin: auto;
+            .userName {
+                font-family: RobotoLight;
+                font-size: 16px;
+                font-weight: bold;
+            }
+        }
+        .level-3 {
+            margin: auto;
+            width: 350px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+            .clubInfo,
+            .clubMap {
+                margin-left: 15px;
+                text-align: center;
+                .separator {
+                    width: 100%;
+                }
+                .clubName {
+                    font-weight: bold;
+                    font-family: RobotoMedium;
+                    text-transform: uppercase;
+                }
+                .address {
+                    font-family: RobotoLight;
+                    font-size: 13px;
+                    line-height: 25px;
+                }
+                .angular-google-map-container {
+                    height: 200px;
+                }
+            }
+            .mapImg {
+                height: 55px;
+                width: 160px;
+                margin-top: -15px;
+            }
+        }
+        .level-4 {
+            img {
+                width: 175px;
+                margin: auto;
+            }
+        }
+        .level-5 {
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+        .playerGrid {
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+        .btn {
+            margin-top: 25px;
+        }
+    }
+}
+
+#playMaps {
+    .angular-google-map-container {
+        height: 400px;
+    }
+}
+
+.play-detail {
+    .popup-header {
+        text-align: center;
+        margin-top: 10px;
+    }
+    .imgContainer {
+        width: 100px;
+        margin: 0 auto;
+        display: block;
+        background-image: url(../img/profile/back-profile.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position-x: 8px;
+    background-position-y: -4px;
+    text-align: center;
+        img {
+            margin-top: 8px;
+            width: 80px;
+            height: 80px;
+            border-radius: 150px;
+        }
+    }
+    .userName {
+        font-family: RobotoLight;
+        font-size: 14px;
+        font-weight: bold;
+        color: #414142;
+        text-align: center;
+    }
+    .dateTime {
+        font-size: 14px;
+        text-align: center;
+    }
+    .separator {
+        border-bottom: 1px solid #20a3d4;
+        width: 70%;
+        display: block;
+        height: 1px;
+        margin: auto;
+    }
+    .clubName {
+        color: #414142;
+        font-size: 10px;
+        text-transform: uppercase;
+        font-family: RobotoMedium;
+    }
+    .address {
+        font-family: RobotoLight;
+        font-size: 11px;
+        font-weight: bold;
+        color: #414142;
+        line-height: 15px;
+    }
+    .group {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 10px;
+        &:first-child {
+            border-bottom: 1px solid #bbbbbb;
+        }
+        .item {
+            border: none;
+            padding: 0;
+            margin-top: 20px;
+            text-align: left;
+            .separator {
+                width: 100%;
+            }
+            img {
+                width: 170px;
+            }
+            span {
+                display: block;
+            }
+        }
+    }
+}

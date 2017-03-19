@@ -1,0 +1,101 @@
+.createMatch {
+    .titleDiv {
+        height: 186px;
+        /*padding-top: 100px;*/
+        background-image: url(../img/match/title-sides.png);
+        background-repeat: repeat-x;
+        text-align: center;
+        .centerTitle {
+            width: 776px;
+            height: 100%;
+            margin: auto;
+            display: inline-block;
+            background-image: url(../img/match/center-title.png);
+            background-repeat: no-repeat;
+        }
+    }
+    #imageBox {
+        height: 63px;
+        color: #818184;
+        text-align: center;
+        spam {
+            color: #20a3d4;
+        }
+        .leftBracket {
+            left: 17%;
+            background-image: url(../img/match/left-bracket.png);
+            background-repeat: no-repeat;
+            width: 27px;
+            height: 63px;
+            display: block;
+            position: absolute;
+        }
+        .centerBracket {
+            width: 65%;
+            height: 63px;
+            display: block;
+            position: absolute;
+            padding-top: 18px;
+            font-size: 20px;
+            spam {
+                font-weight: bold;
+            }
+        }
+        .rightBracket {
+            right: 17%;
+            background-image: url(../img/match/right-bracket.png);
+            background-repeat: no-repeat;
+            width: 27px;
+            height: 63px;
+            display: block;
+            position: absolute;
+        }
+        .centerBracket {
+            img#profileImg {
+                margin-top: 65px;
+                margin-left: 215px;
+            }
+            #uploadFileBtn {
+                position: absolute;
+                margin-top: -100px;
+                margin-left: 500px;
+                color: #5ca3d4;
+                font-size: 28px;
+            }
+        }
+    }
+    form {
+        label.subtitle {
+            color: #20a3d4;
+            display: block;
+            margin-left: 10px;
+        }
+        .searchBtn {
+            display: inline;
+            float: right;
+            background-image: url(../img/match/search-btn.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            height: 45px;
+            width: 45px;
+            margin-top: -10px;
+        }
+        .btn {
+            float: right;
+        }
+        .mapContainer {
+            background-image: url(../img/match/mock-map.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            height: 82px;
+            margin: 0;
+        }
+        .input90 {
+            width: 90%;
+        }
+    }
+    .angular-google-map-container {
+        height: 100px;
+    }
+}

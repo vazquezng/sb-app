@@ -1,0 +1,282 @@
+.header {
+    margin-top: 1px;
+    img {
+        width: 100%;
+        height: auto;
+    }
+    .desc {
+        position: absolute;
+        right: 4%;
+        top: 35%;
+        text-align: right;
+        h1 {
+            font-size: 100px;
+            font-family: "Open Sans";
+            color: rgb(255, 255, 255);
+            text-transform: uppercase;
+            /*line-height: 0.179;*/
+            text-align: right;
+            text-shadow: 0.5px 0.866px 1px rgba(0, 0, 0, 0.5);
+            z-index: 110;
+            margin: 0;
+            padding: 0;
+            margin-bottom: -4%;
+        }
+        h2 {
+            margin-top: -3%;
+            font-size: 80px;
+            font-family: "Open Sans";
+            color: rgb(255, 255, 255);
+            text-transform: uppercase;
+            text-align: left;
+            text-shadow: 0.5px 0.866px 1px rgba(0, 0, 0, 0.5);
+            font-weight: 300;
+            z-index: 109;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
+
+welcome {
+    .container {
+        background-color: white;
+        text-align: center;
+        h4 {
+            text-align: center;
+            font-size: 53px;
+            /*TODO*/
+            font-family: "Open Sans";
+            /*TODO*/
+            color: #1a1a1a;
+            margin-top: 35px;
+            span {
+                color: #45adf1;
+            }
+        }
+        .commentary {
+            p {
+                font-size: 23px;
+                color: #818184;
+                margin-top: 40px;
+                margin-bottom: 12px;
+            }
+            span {
+                font-size: 15px;
+                color: #20a3d4;
+            }
+        }
+        .desc {
+            p {
+                font-size: 15px;
+                color: #818184;
+                margin: 0 auto;
+                margin-top: 32px;
+                max-width: 100%;
+            }
+        }
+        a.btn {
+            color: #fff;
+            margin: 25px 0;
+            background-color: #20a3d4;
+            width: 336px;
+            height: 55px;
+            padding-top: 10px;
+            font-size: 24px;
+        }
+    }
+}
+
+want-to-play {
+    background-color: #252525;
+    display: block;
+    padding: 75px 0;
+    .quiero-jugar {
+        h5 {
+            font-size: 54px;
+            color: #20a3d4;
+            margin: 0;
+            font-weight: 300;
+        }
+        h6 {
+            font-size: 75px;
+            color: #ffffff;
+            margin: 0;
+            font-weight: 300;
+        }
+    }
+    .desc {
+        text-align: left;
+        padding-top: 2%;
+        p {
+            font-size: 15px;
+            color: #818184;
+        }
+    }
+    .play {
+        padding-top: 3%;
+        a.btn {
+            background-color: #20a3d4;
+            width: 155px;
+            height: 64px;
+            color: white;
+            font-size: 25px;
+            vertical-align: middle;
+            display: table-cell;
+        }
+    }
+}
+
+sb-sections {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    .canchas {
+        background: url(../img/home-canchas.png) center center no-repeat;
+        background-size: cover;
+        height: 326px;
+        border-right: 1px solid #ffffff;
+        padding-top: 3%;
+        padding-left: 8%;
+    }
+    .torneos {
+        background: url(../img/home-torneos.png) center center no-repeat;
+        background-size: cover;
+        height: 326px;
+        padding-top: 3%;
+        padding-left: 3%;
+    }
+    p {
+        font-size: 52px;
+        font-weight: 300;
+        color: white;
+        margin: 0;
+        padding: 0;
+        line-height: 49px;
+    }
+    span {
+        color: white;
+        font-size: 16px;
+        text-transform: uppercase;
+    }
+    a.btn {
+        position: absolute;
+        bottom: 20%;
+        right: 15%;
+        width: 166px;
+        height: 50px;
+        border: 1px solid white;
+        color: white;
+        font-size: 20px;
+        padding-top: 10px;
+        &:hover {
+            color: white;
+        }
+    }
+}
+
+home-blog {
+    display: block;
+    .container {
+        padding-top: 1%;
+        padding-bottom: 4%;
+    }
+    h3 {
+        color: #252525;
+        font-size: 52px;
+        font-family: "Open Sans";
+        font-weight: bold;
+    }
+    h4 {
+        color: #20a3d4;
+        font-size: 43px;
+        font-family: "Open Sans";
+    }
+    .noticias {
+        display: flex;
+        justify-content: space-between;
+        .item {
+            width: 473px;
+            img {
+                width: 473px;
+                height: auto;
+            }
+            .date {
+                font-size: 25px;
+                color: #20a3d4;
+                text-transform: uppercase;
+                margin-top: 2%;
+            }
+            .inline {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .desc {
+                    font-size: 16px;
+                    color: #252525;
+                    text-transform: uppercase;
+                    display: inline-block;
+                    width: 86%;
+                }
+                .more {
+                    display: inline-block;
+                    color: #fff;
+                    background: #20a3d4;
+                    padding: 5px 15px;
+                    font-size: 25px;
+                }
+            }
+        }
+    }
+}
+
+home-comunidad {
+    display: block;
+    background-color: #20a3d4;
+    .container {
+        padding-top: 1%;
+        padding-bottom: 0;
+    }
+    .group {
+        display: flex;
+        justify-content: space-between;
+        color: white;
+        .group {
+            justify-content: space-between;
+            align-items: center;
+            h4 {
+                font-weight: bold;
+                font-size: 62.5px;
+                margin: 0;
+            }
+            .unite {
+                border: 1px solid white;
+                color: white;
+                font-size: 24px;
+                padding: 5px 50px;
+                cursor: pointer;
+                &:hover {
+                    color: white;
+                    text-decoration: none;
+                }
+            }
+        }
+        .item {
+            width: 50%;
+            position: relative;
+            h3 {
+                font-size: 43px;
+                margin-bottom: 0;
+            }
+            p {
+                font-size: 14px;
+                margin-top: 6%;
+                margin-bottom: 5%;
+            }
+            img {
+                position: absolute;
+                bottom: 0;
+            }
+        }
+    }
+}

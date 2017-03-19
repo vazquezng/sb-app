@@ -1,0 +1,162 @@
+<ion-view view-title='<img src="./img/logo-header.png"/>'>
+    <ion-content class="profile">
+        <h1>Tu perfil</h1>
+        <p>Completá los datos de tu perfil para contactarte con otros jugadores.</p>
+        <form name="formProfile" novalidate>
+            <div class="row photo">
+                <div class="col" style="position:relative;">
+                    <div class="back-profile">
+                        <img ng-src="./img/back-profile.png" />
+                    </div>
+                    <img ng-src="{{vm.avatar}}" class="image-profile" style="margin-top: 3px;border-radius: 164px;width: 160px;height: 160px;" />
+                </div>
+                <div class="col" style="padding-top: 14%;padding-left: 4%;">
+                    <div style="margin-bottom: 10%;background: url('./img/camare.png') left center; background-repeat:no-repeat">
+                        <span style="padding-left: 35px;">Tomar Foto</span>
+                    </div>
+                    <hr>
+                    <div style="background: url('./img/image.png') left center; background-repeat:no-repeat">
+                        <span style="padding-left: 35px;">Seleccionar</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <input type="text" ng-model="vm.user.first_name" required/>
+                    <label>NOMBRE</label>
+                </div>
+                <div class="col">
+                    <input type="text" ng-model="vm.user.last_name" required/>
+                    <label>APELLIDO</label>
+                </div>
+                <div class="col">
+                    <input type="text" ng-model="vm.user.email" required/>
+                    <label>EMAIL</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input type="number" ng-model="vm.user.years" required />
+                    <label>EDAD</label>
+                </div>
+                <div class="col" style="padding-top: 19px;">
+                    <select class="form-control minimal" name="inputGender" id="inputGender" ng-model="vm.user.sexo" required>
+                        <option value="male">Masculino</option>
+                        <option value="female">Femenino</option>
+                    </select>
+                    <label>SEXO</label>
+                </div>
+            </div>
+
+            <div class="row ">
+                <div class="col">
+                    <input type="text" g-places-autocomplete ng-model="vm.country" />
+                    <label>PAIS</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <input type="text" g-places-autocomplete ng-model="vm.city" />
+                    <label>CIUDAD</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input type="text" g-places-autocomplete ng-model="vm.address" />
+                    <label>DIRECCIÓN</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <select class="form-control minimal" name="inputGameLevel" id="inputGameLevel" ng-model="vm.user.game_level" required> 
+                            <option value="2.5">2.5</option> 
+                            <option value="3">3.0</option> 
+                            <option value="3.5">3.5</option> 
+                            <option value="4">4.0</option> 
+                            <option value="4.5">4.5</option> 
+                            <option value="5">5.0</option> 
+                            <option value="5.5">5.5</option> 
+                            <option value="6">6.0</option> 
+                            <option value="6.5">6.5</option> 
+                            <option value="7">7.0</option> 
+                        </select>
+                    <label>NIVEL DE JUEGO</label>
+                </div>
+                <div class="col">
+                    <select class="form-control minimal" name="inputITN" id="inputITN" ng-model="vm.user.itn" required>
+                            <option ng-repeat="itn in ::[1,2,3,4,5,6,7,8,9,10]" value="{{itn}}">{{itn}}</option>
+                        </select>
+                    <label>ITN</label>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top: 19px;">
+                <div class="col">
+                    <div class="form-group">
+                        <input type="checkbox" class="form-control" ng-model="vm.user.single" required/>
+                        <label for="inputCity">SINLGES</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <input type="checkbox" class="form-control" ng-model="vm.user.double" required/>
+                        <label for="inputCity">DOBLES</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <input type="text" ng-model="vm.user.coach" />
+                    <label>COACH/PROFESOR</label>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 4px;">
+                <a style="width: 50%;padding-bottom: 5px;border-bottom: 1px solid #00a5d7;"><img ng-src="./img/calendar.png" /></a>
+            </div>
+            <div class="row">
+                <label>DISPONIBILIDAD</label>
+            </div>
+            <div class="row" style="margin-top: 3px;">
+                <div class="range" style="border: none;width: 100%;padding-left: 0;">
+                    <rzslider rz-slider-model="vm.user.distance" rz-slider-options="{floor: 2,
+                    ceil: 50,
+                    step: 2,
+                    minLimit: 2,
+                    maxLimit: 50,
+                    showSelectionBar: true}"></rzslider>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: -11px;margin-bottom: 10px;">
+                <label>DISTANCIA PARA JUGAR UN PARTIDO</label>
+            </div>
+
+            <div class="row">
+                <div class="list" style="width:100%;margin-top:12px;margin-bottom: 2px;">
+                    <label class="item item-input item-select" style="height: 30px;    height: 30px;border: none;border-bottom: 1px solid #00a5d7;">
+                        <select style="right: inherit;" name="inputGender" id="inputPartnerClub" ng-model="vm.user.club_member">
+                            <option value="0">Ninguno</option> 
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <label>SOS SOCIO DE ALGUN CLUB?</label>
+            </div>
+            <div class="row" style="margin-top: 11px;">
+                <label>SOBRE MI</label>
+            </div>
+            <div class="row">
+                <textarea style="width: 100%;min-height: 100px;border: 1px solid #00a5d7;margin-top: 4px;resize: none;" ng-model="vm.user.about" required></textarea>
+            </div>
+
+            <button class="button button-block button-outline button-calm" ng-click="vm.save(formProfile)">
+                Guardar
+            </button>
+        </form>
+    </ion-content>
+</ion-view>

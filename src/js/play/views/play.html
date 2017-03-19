@@ -1,0 +1,135 @@
+<div class="play">
+    <div class="header">
+        <img src="/img/play/header-play.png" />
+    </div>
+    <div class="titleDiv">
+        <div class="centerTitle">Quiero Jugar</div>
+    </div>
+
+    <div id="imageBox">
+        <div class="leftBracket"></div>
+        <div class="centerBracket">
+            <div class="text">
+                Aquí podrás visualizar los partidos que fueron creados por otros usuarios, quienes cumplen <span>tus mismos requisitos</span> y están en la búsqueda de <span>jugadores como vos.</span>
+            </div>
+        </div>
+        <div class="rightBracket"></div>
+    </div>
+    <div class="subtitleImg"></div>
+    <div class="usersGrid container">
+        <div class="row">
+            <div class="userBox col-xs-3" ng-repeat="match in vm.matchs">
+                <div class="leftBracket"></div>
+                <div class="centerBracket">
+                    <div class="level-1">
+                        <div class="imgContainer">
+                            <img ng-src="{{match.user.image}}">
+                        </div>
+                    </div>
+                    <div class="level-2">
+                        <div class="userName">
+                            {{match.user.first_name}} {{match.user.last_name}}
+                        </div>
+                        <div class="separator"></div>
+                        <div class="dateTime">
+                            <span>{{match.date}} - {{match.hour}}</span>
+                            <!--span>17.12.16 - 16:30</span-->
+                        </div>
+                    </div>
+                    <div class="level-3">
+                        <div class="clubName" ng-bind="match.club_name">
+                        </div>
+                        <div class="separator"></div>
+                        <div class="address" ng-bind="match.address.substr(0, 30)">
+                        </div>
+                    </div>
+                    <div class="level-4">
+                        <img class="mapImg" src="/img/match/mock-map.png" ng-click="vm.openMaps(match.address_lat, match.address_lng)" />
+                    </div>
+                    <div class="level-5">
+                        <input type="image" name="submit" src="/img/play/eye-icon.png" border="0" alt="Submit" ng-click="vm.openModalPlay(match)" />
+                    </div>
+                </div>
+                <div class="rightBracket"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<sb-footer></sb-footer>
+
+
+<script type="text/ng-template" id="play-modal">
+    <div class="modalDetail" id="myModal" role="dialog">
+        <div class="modal-header">
+            <input type="image" name="submit" ng-click="close()" ng-src="/img/play/close.png" border="0" class="close" />
+        </div>
+        <div id="myModal" class="modal-body">
+            <div class="popup-header">
+                <img src="/img/play/openQT.png" />{{match.about}}<img src="/img/play/closeQT.png" />
+            </div>
+            <div class="userInformation">
+                <div class="level-1">
+                    <div class="imgContainer">
+                        <img ng-src="{{match.user.image}}" style="border-radius: 150px;">
+                    </div>
+                </div>
+                <div class="level-2">
+                    <div class="userName">
+                        {{match.user.first_name}} {{match.user.last_name}}
+                    </div>
+                    <div class="separator"></div>
+                    <div class="dateTime">
+                        <span>{{match.date}} - {{match.hour}}</span>
+                    </div>
+                </div>
+                <div class="level-3">
+                    <div class="clubInfo">
+                        <div class="clubName" ng-bind="match.club_name">
+                        </div>
+                        <div class="separator"></div>
+                        <div class="address" ng-bind="match.address.substr(0, 30)">
+                        </div>
+                    </div>
+                </div>
+                <div class="level-3">
+                    <div class="clubMap">
+                        <ui-gmap-google-map center='map.center' zoom='map.zoom'>{{map}}
+                            <ui-gmap-marker idkey="timestime" coords='map.center' options="{crossOnDrag:false, draggable:false}"></ui-gmap-marker>
+                        </ui-gmap-google-map>
+                    </div>
+                </div>
+                <div class="level-4">
+                    <img src="/img/play/doubles-btn.png" />
+                </div>
+                <div ng-if="match.users.length">
+                    <div class="level-5">
+                        Mirá los jugadores <span>ya anotados</span>
+                    </div>
+                    <div class="playerGrid">
+                        <div class="row">
+                            <div class="col-xs-4 col-center-block" ng-repeat="user in match.users">
+                                <div class="imgContainer">
+                                    <img ng-src="{{user.image}}" ng-if="::user.image!= '' && user.image!= null" />
+                                    <img ng-src="{{URL_BUCKET}}/img/profile/profile-blank.png" ng-if="::user.image== '' || user.image== null" />
+                                </div>
+                                <div class="userName">
+                                    {{user.name}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn" ng-if="vm.playBtn" ng-click="play()">QUIERO JUGAR</button>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="playmap-modal">
+    <div id="playMaps">
+        <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+            <ui-gmap-marker idkey="timestime" coords='map.center' options="{crossOnDrag:false, draggable:false}"></ui-gmap-marker>
+        </ui-gmap-google-map>
+    </div>
+</script>

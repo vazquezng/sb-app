@@ -1,0 +1,29 @@
+.matchDetail{
+    margin-bottom: 50px;
+    .titleDiv {
+        height: 186px;
+        /*padding-top: 100px;*/
+        background-image: url(../img/title-sides-gray.png);
+        background-repeat: repeat-x;
+        text-align: center;
+        .centerTitle {
+            width: 776px;
+            height: 100%;
+            margin: auto;
+            display: inline-block;
+            background-image: url(../img/center-title-gray.png);
+            background-repeat: no-repeat;
+            font-family: CookieRegular;
+            font-size: 60px;
+            padding-top: 50px;
+            color: #00a5d7;
+        }
+    }
+    .userFeedback{
+        width: 75%;
+        display: inline-block;
+    }
+    .feedbackBtn{
+        vertical-align: text-bottom;
+    }
+}

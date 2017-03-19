@@ -1,0 +1,127 @@
+<ion-view view-title='<img src="./img/logo-header.png"/>'>
+    <ion-content class="profile">
+        <h1>Creá un Partido</h1>
+        <p>Completá los datos y que el <span>juego empiece.</span></p>
+        <form name="CreateMatch">
+
+            <div class="row">
+                <div class="col">
+                    <input type="date" data-date-format="DD MMMM YYYY" class="form-control" ng-model="vm.match.date" required>
+                    <label>FECHA</label>
+                </div>
+                <div class="col">
+                    <input required="" type="time" step="1800" placeholder="HH:mm:ss" class="form-control" ng-model="vm.match.hour" required>
+                    <label>HORA</label>
+                </div>
+            </div>
+
+            <div class="row ">
+                <div class="col">
+                    <select class="form-control minimal" name="inputGender" id="inputPartnerClub" ng-model="vm.match.address"> 
+                        <option value="0">Ninguno</option> 
+                    </select>
+                    <label for="inputPlace">LUGAR</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" ng-model="vm.match.club_name" ng-required="{{vm.match.address == ''}}">
+                    <label for="inputAddress">NOMBRE DEL CLUB</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input type="text" ng-model="vm.address" g-places-autocomplete placeholder="Indicar Dirección" ng-change="vm.changeAddress()" />
+                    <label>OTRO</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <ui-gmap-google-map center='vm.map.center' zoom='vm.map.zoom' options="{draggable:false}">
+                        <ui-gmap-marker idkey="1" coords='vm.map.center' options="{crossOnDrag:false, draggable:false}"></ui-gmap-marker>
+                    </ui-gmap-google-map>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col" style="color:#00a5d7">
+                    NIVEL DE JUEGO
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <select class="form-control minimal" name="inputGameLevelFrom" id="inputGameLevelFrom" required> 
+                        <option value="2.5">2.5</option> 
+                        <option value="3.0">3.0</option> 
+                        <option value="3.5">3.5</option> 
+                        <option value="4.0">4.0</option> 
+                        <option value="4.5">4.5</option> 
+                        <option value="5.0">5.0</option> 
+                        <option value="5.5">5.5</option> 
+                        <option value="6.0">6.0</option> 
+                        <option value="6.5">6.5</option> 
+                        <option value="7.0">7.0</option>  
+                    </select>
+                    <label>DESDE</label>
+                </div>
+                <div class="col">
+                    <select class="form-control minimal" name="inputGameLevelTo" id="inputGameLevelTo" required> 
+                            <option value="2.5">2.5</option> 
+                            <option value="3.0">3.0</option> 
+                            <option value="3.5">3.5</option> 
+                            <option value="4.0">4.0</option> 
+                            <option value="4.5">4.5</option> 
+                            <option value="5.0">5.0</option> 
+                            <option value="5.5">5.5</option> 
+                            <option value="6.0">6.0</option> 
+                            <option value="6.5">6.5</option> 
+                            <option value="7.0">7.0</option> 
+                        </select>
+                    <label>HASTA</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <select class="form-control minimal" name="inputGender" id="inputGender" ng-model="vm.match.sexo" required>
+                        <option value="mixto">Mixto</option>
+                        <option value="male">Masculino</option>
+                        <option value="female">Femenino</option>
+                    </select>
+                    <label>SEXO</label>
+                </div>
+                <div class="col">
+                    <select class="form-control minimal" name="inputGender" id="inputGender" ng-model="vm.match.type" required>
+                        <option value="single" >Single</option>
+                        <option value="double">Double</option>
+                    </select>
+                    <label>TIPO DE PARTIDO</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col" style="color:#00a5d7">
+                    EDAD
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input type="text" onkeypress="return validaNumber(event)" class="form-control minimal" ng-model="vm.match.years_from" required/>
+                    <label>DESDE</label>
+                </div>
+                <div class="col">
+                    <input type="text" onkeypress="return validaNumber(event)" class="form-control minimal" ng-model="vm.match.years_to" required/>
+                    <label>HASTA</label>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 11px;">
+                <label>COMENTARIO</label>
+            </div>
+            <div class="row">
+                <textarea style="width: 100%;min-height: 100px;border: 1px solid #00a5d7;margin-top: 4px;resize: none;" ng-model="vm.match.about" required></textarea>
+            </div>
+
+            <button ng-click="vm.save(CreateMatch)" class="button button-block button-outline button-calm">
+                Guardar
+            </button>
+        </form>
+    </ion-content>
+</ion-view>

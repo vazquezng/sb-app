@@ -1,0 +1,110 @@
+.feedback{
+    margin-bottom: 50px;
+    .titleDiv {
+        height: 186px;
+        /*padding-top: 100px;*/
+        background-image: url(../img/title-sides-gray.png);
+        background-repeat: repeat-x;
+        text-align: center;
+        .centerTitle {
+            width: 776px;
+            height: 100%;
+            margin: auto;
+            display: inline-block;
+            background-image: url(../img/center-title-gray.png);
+            background-repeat: no-repeat;
+            font-family: CookieRegular;
+            font-size: 60px;
+            padding-top: 50px;
+            color: #00a5d7;
+            
+        }
+    }
+    form{
+        #imageBox {
+            height: 280px;
+            .leftBracket {
+                left: 17%;
+                background-image: url(../img/profile/left-bracket.png);
+                background-repeat: no-repeat;
+                width: 27px;
+                height: 280px;
+                display: block;
+                position: absolute;
+            }
+            .centerBracket {
+                width: 65%;
+                height: 280px;
+                display: block;
+                position: absolute;
+                .imgContainer {
+                    margin-left: 23%;
+                    margin-bottom: 20px;
+                    margin-top: 25px;
+                    width: 215px;
+                    height: 233px;
+                    background-image: url(../img/profile/back-profile.png);
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    display: inline-block;
+                    img {
+                        margin-top: 8px;
+                        width: 215px;
+                    }
+                }
+                .userInfo {
+                    display: inline-block;
+                    margin-left: 100px;
+                    font-size: 17px;
+                    padding-top: 120px;
+                    position: absolute;
+                    font-family: RobotoLight;
+                    width: 300;
+                    text-align: center;
+                    line-height: 25px;
+                    
+                    label{
+                        font-size: 15px;
+                    }
+                }
+                .profileImgContainer {
+                    background-image: url(../img/profile/back-profile.png);
+                    background-repeat: no-repeat;
+                }
+                img#profileImg {
+                    margin-top: 23px;
+                    margin-left: 9px;
+                    border-radius: 164px;
+                    width: 202px;
+                    height: 202px;
+                }
+            }
+            .rightBracket {
+                right: 17%;
+                background-image: url(../img/profile/right-bracket.png);
+                background-repeat: no-repeat;
+                width: 27px;
+                height: 280px;
+                display: block;
+                position: absolute;
+            }
+        }
+        .column-lg{
+            vertical-align: top;
+        }
+        .column-x-lg{
+            padding: 15px;
+        }
+        .separator {
+            border-bottom: 1px solid #20a3d4;
+            width: 70%;
+            display: block;
+            height: 1px;
+            margin: auto;
+        }
+        .btn{
+            float: right;
+            margin-right: 25px;
+        }
+    }
+}

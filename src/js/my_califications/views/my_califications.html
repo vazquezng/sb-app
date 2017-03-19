@@ -1,0 +1,44 @@
+<div class="myCalifications">
+    <div class="header">
+        <img src="/img/profile/header-profile.png" />
+    </div>
+
+    <div class="titleDiv">
+        <div class="centerTitle">¿Qué opinaron de mí?</div>
+    </div>
+    
+    <div class="container">
+        <div class="boxItem" ng-repeat="feedback in vm.feedbacks"> 
+            <div class="imgContainer">
+                <img src="{{feedback.image}}">
+            </div>
+            <div class="textContainer">
+                <div class="boxTitle">
+                    <div class="userName">
+                        {{feedback.name}}
+                    </div>
+                    <div class="dateTime">
+                        {{feedback.date}}
+                    </div>
+                </div>
+                <div class="conntent">
+                    <div class="comment">
+                        <img src="/img/play/openQT.png" />
+                        <div class="text">
+                            {{feedback.comment}}
+                        </div>
+                        <img class="closeQT" src="/img/play/closeQT.png" />
+                    </div>
+                    <div class="btnContainer">
+                        <input type="image" name="submit" src="/img/play/eye-icon.png" border="0" alt="Submit"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="!vm.feedbacks.length" class="info">
+            <span>Aún no tenés calificaciones.</span>
+        </div>
+    </div>
+    
+</div>
+<sb-footer></sb-footer>

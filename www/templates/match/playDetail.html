@@ -1,0 +1,55 @@
+<ion-view view-title='<img src="./img/logo-header.png"/>'>
+    <ion-content class="play-detail play profile">
+        <div class="popup-header">
+            <img src="./img/play/openQT.png" />{{vm.match.about}}<img src="./img/play/closeQT.png" />
+        </div>
+        <div class="imgContainer">
+            <img ng-src="{{vm.match.user.image}}" ng-if="::vm.match.user.image!= '' && vm.match.user.image!= null" />
+            <img ng-src="./img/profile/profile-blank.png" ng-if="::vm.match.user.image== '' || vm.match.user.image== null" />
+        </div>
+        <div>
+            <div class="userName">
+                {{vm.match.userCreate.first_name}} {{vm.match.userCreate.last_name}}
+            </div>
+            <div class="separator"></div>
+            <div class="dateTime">
+                <span>{{vm.match.date}} - {{vm.match.hour}}</span>
+                <!--span>17.12.16 - 16:30</span-->
+            </div>
+        </div>
+        <div class="group">
+            <div class="item">
+                <div class="clubName" ng-bind="vm.match.club_name"></div>
+                <div class="separator"></div>
+                <div class="address" ng-bind="vm.match.address.substr(0, 30)"></div>
+            </div>
+            <div class="item">
+                <img class="mapImg" src="/img/match/mock-map.png" ng-click="vm.openMaps(match.address_lat, match.address_lng)" />
+            </div>
+        </div>
+        <div class="group">
+            <div class="item" style="text-transform: uppercase;">
+                Mirá los jugadores <span>ya anotados</span>
+            </div>
+            <div class="item">
+                <img src="/img/play/doubles-btn.png" />
+            </div>
+        </div>
+        <div class="playerGrid">
+            <div class="row">
+                <div class="col-xs-3 col-center-block" ng-repeat="user in vm.match.users">
+                    <div class="imgContainer">
+                        <img ng-src="{{user.image}}" ng-if="::user.image!= '' && user.image!= null" />
+                        <img ng-src="./img/profile/profile-blank.png" ng-if="::user.image== '' || user.image== null" />
+                    </div>
+                    <div class="userName">
+                        {{user.first_name}}</br><span>{{user.last_name}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button ng-click="vm.play()" class="button button-block button-outline button-calm">
+            Quiero Jugar
+        </button>
+    </ion-content>
+</ion-view>
