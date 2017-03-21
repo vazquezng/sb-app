@@ -9,11 +9,11 @@ import './controllers/my_califications.controller.ts';
 angular
   .module('MyCalifications')
   .config(['$stateProvider', function($stateProvider){
-    const tplMyCalifications = <string> require('./views/my_califications.html');
+    // const tplMyCalifications = <string> require('./views/my_califications.html');
     $stateProvider
     .state('app.myCalifications', {
         url: '/my_califications',
-        template: tplMyCalifications,
+        templateUrl: './templates/my_califications/my_califications.html',
         controller: 'MyCalificationsController',
         controllerAs: 'vm'
     });

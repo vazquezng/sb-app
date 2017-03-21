@@ -8,15 +8,15 @@
             Feedback
         </div>
     </div>
-    
+
     <form>
         <input type="hidden" class="form-control" name="inputUserId" id="inputUserId" ng-model="vm.feedback.user_id" />
-        <input type="hidden" class="form-control" name="inputUserId" id="inputUserId"  ng-model="vm.feedback.match_id" />
+        <input type="hidden" class="form-control" name="inputUserId" id="inputUserId" ng-model="vm.feedback.match_id" />
         <div id="imageBox">
             <div class="leftBracket"></div>
             <div class="centerBracket">
                 <div class="imgContainer">
-                    <img id="profileImg" src="{{vm.user.image}}"/>
+                    <img class="profileImg" src="{{vm.user.image}}" />
                 </div>
                 <div class="userInfo">
                     {{vm.user.name}}
@@ -26,16 +26,18 @@
             </div>
             <div class="rightBracket"></div>
         </div>
+
+        <label class="subtitle">Datos del partido</label>
         <div class="row-form">
             <div class="column">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="inputDate" id="inputDate" ng-model="vm.match.date" disabled="true"/>
+                    <input type="text" class="form-control" name="inputDate" id="inputDate" ng-model="vm.match.date" disabled="true" />
                     <label for="inputDate">Fecha</label>
                 </div>
             </div>
             <div class="column">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="inputTime" id="inputTime" ng-model="vm.match.hour" disabled="true"/>
+                    <input type="text" class="form-control" name="inputTime" id="inputTime" ng-model="vm.match.hour" disabled="true" />
                     <label for="inputTime">Hora</label>
                 </div>
             </div>
@@ -43,26 +45,57 @@
         <div class="row-form">
             <div class="column">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="inputLocation" id="inputLocation" ng-model="vm.match.address" disabled="true"/>
+                    <input type="text" class="form-control" name="inputLocation" id="inputLocation" ng-model="vm.match.address" disabled="true" />
                     <label for="inputLocation">Lugar</label>
                 </div>
             </div>
             <div class="column">
-                <div class="column">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="inputAge" id="inputAge" ng-model="vm.match.years_from" disabled="true"/>
-                        <label for="inputAge">Edad</label>
-                    </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="inputAge" id="inputAge" ng-model="vm.match.years_from" disabled="true" />
+                    <label for="inputAge">Edad</label>
                 </div>
-                <div class="column">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="inputMatchType" id="inputMatchType" ng-model="vm.match.sexo" disabled="true"/>
-                        <label for="inputMatchType">Tipo de partido</label>
-                    </div>
+            </div>
+            <div class="column">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="inputMatchType" id="inputMatchType" ng-model="vm.match.sexo" disabled="true" />
+                    <label for="inputMatchType">Tipo de partido</label>
+                </div>
+            </div>
+            <div class="column">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="inputMatchType" id="inputMatchType" ng-model="vm.user.game_level" disabled="true" />
+                    <label for="inputGameLevel">Nivel de juego</label>
                 </div>
             </div>
         </div>
+        <label class="subtitle">Nivel declarado del jugador</label>
         <div class="row-form">
+            <div class="column">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="inputMatchType" id="inputMatchType" ng-model="vm.user.itn" disabled="true" />
+                    <label for="inputITN">ITN</label>
+                </div>
+            </div>
+        </div>
+        <label class="subtitle">Ingresa a tu criterio el nivel del jugador y completa el resto de los campos</label>
+        <div class="row-form">
+            <div class="column-sm">
+                <div class="form-group">
+                    <select class="form-control minimal" name="inputHasAttended" id="inputHasAttended" ng-model="vm.feedback.has_attended" required>
+                        <option></option>
+                        <option value="1">SI</option> 
+                        <option value="0">NO</option> 
+                    </select>
+                    <label for="inputHasAttended">Asistió al partido</label>
+                </div>
+            </div>
+            <div class="column-lg">
+                <div class="form-group">
+                    <textarea class="form-control" rows="3" name="inputReason" id="inputReason" placeholder="¿Cuál fue el motivo?" ng-model="vm.feedback.reason" ng-if="vm.feedback.has_attended==0" ng-required="vm.feedback.has_attended==0"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row-form" ng-if="vm.feedback.has_attended==1">
             <div class="column">
                 <div class="column">
                     <div class="form-group">
@@ -92,8 +125,7 @@
                 </div>
                 <div class="column">
                     <div class="form-group">
-                        <select class="form-control minimal" name="inputRespect" id="inputRespect" ng-model="vm.feedback.respect"
-                                ng-options="respect for respect in ::[1,2,3,4,5,6,7,8,9,10]" required>
+                        <select class="form-control minimal" name="inputRespect" id="inputRespect" ng-model="vm.feedback.respect" ng-options="respect for respect in ::[1,2,3,4,5,6,7,8,9,10]" required>
                             <option></option>
                         </select>
                         <label for="inputRespect">Respeto</label>
@@ -102,29 +134,12 @@
             </div>
         </div>
         <div class="row-form">
-            <div class="column-sm">
-                <div class="form-group">
-                    <select class="form-control minimal" name="inputHasAttended" id="inputHasAttended"  ng-model="vm.feedback.has_attended" required>
-                        <option></option>
-                        <option value="1">SI</option> 
-                        <option value="0">NO</option> 
-                    </select>
-                    <label for="inputHasAttended">Asistió al partido</label>
-                </div>
-            </div>
-            <div class="column-lg">
-                <div class="form-group">
-                    <textarea class="form-control" rows="3" name="inputReason" id="inputReason" placeholder="¿Cuál fue el motivo?" ng-model="vm.feedback.reason" ng-if="vm.feedback.has_attended==0" ng-required="vm.feedback.has_attended==0"></textarea>
-                </div>
-            </div>
-        </div>
-        <div class="row-form">
             <div class="column-x-lg">
                 <textarea class="form-control" rows="3" name="inputComments" id="inputComments" placeholder="Dejanos tu comentario..." ng-model="vm.feedback.comment" required></textarea>
             </div>
         </div>
-                
-        <button type="submit" class="btn btn-lg" ng-click="vm.saveFeedback()">Guardar</button>
+
+        <button type="submit" class="btn btn-lg" ng-click="vm.saveFeedback()" ng-disabled="vm.complete">Guardar</button>
     </form>
 </div>
 <sb-footer></sb-footer>

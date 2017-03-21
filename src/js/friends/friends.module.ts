@@ -9,10 +9,10 @@ import './controllers/friends.controller.ts';
 angular
   .module('Friends')
   .config(['$stateProvider', function($stateProvider){
-    const tplAppFriends = <string> require('./views/friends.html');
+    //const tplAppFriends = <string> require('./views/friends.html');
     $stateProvider.state('app.friends', {
         url: '/friends',
-        template: tplAppFriends,
+        templateUrl: './templates/friends/friends.html',
         controller: 'FriendsController',
         controllerAs: 'vm',
         resolve:{

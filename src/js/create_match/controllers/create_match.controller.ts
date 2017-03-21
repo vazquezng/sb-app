@@ -1,12 +1,12 @@
 import * as moment from 'moment';
 
-export class CreateMatchController 
-{   
-    static $inject = ['$scope', '$http', '$state', 'PATHS'];
-    
+export class CreateMatchController
+{
+    static $inject = ['$scope', '$http', '$state', 'PATHS', 'LoginService', 'toaster'];
+
     public match:any = {
         date: new Date(),
-        hour: new Date(moment('15:30','HH:mm a')),
+        hour: new Date(moment('15:30','HH:mm')),
         address: '',
         address_lat:'',
         address_lng: '',
@@ -18,7 +18,16 @@ export class CreateMatchController
     public address;
     public map;
     public market;
-    constructor($scope, private $http, private $state, private PATHS){
+
+    public stopSave = false;
+    constructor($scope, private $http, private $state, private PATHS, private LoginService, private toaster){
+        if(!LoginService.isAuth()){
+          $state.go('login');
+        }else if(!LoginService.getUser().complete){
+            toaster.pop({type:'error', body:'Debe completar su perfil primero.'});
+            $state.go('app.profile');
+        }
+
         this.map = { center: { latitude: -34.6038966, longitude: -58.3817433 }, zoom: 14 };
         console.log(new Date(moment('15:30','HH:mm a')));
     }
@@ -34,17 +43,38 @@ export class CreateMatchController
         }
     }
 
+    public validateYears(){
+
+        if(!this.match.years_from || !this.match.years_to){
+           return;
+        }
+
+        if(this.match.years_from <= 17){
+            this.toaster.pop({type:'info', body:'La "Edad desde" debe ser mayor a 17 años.'})
+        }
+        if(this.match.years_from > 100){
+            this.toaster.pop({type:'info', body:'La "Edad desde" debe ser menor a 100 años.'})
+        }
+        if(this.match.years_from > this.match.years_to){
+            this.toaster.pop({type:'info', body:'La "Edad desde" debe ser menor a la "Edad hasta".'})
+        }
+    }
+
     public save(form){
         const vm = this;
-        if(form.$valid){
+        if(form.$valid && this.match.years_from > 17 && this.match.years_to<100 && this.match.years_from<=this.match.years_to && !this.stopSave){
+            this.stopSave = !this.stopSave;
+            this.match.hour = this.match.hour.toLocaleTimeString();
             this.$http.post(this.PATHS.api + '/match', this.match).then(function(resp){
                 if(resp.data.success){
-                    vm.$state.go('app.profile');
+                    vm.$state.go('app.matchHistory');
                 }
             });
+        }else{
+            this.toaster.pop({type:'info', body:'Debe completar todos los datos.'})
         }
     }
 }
 
 angular.module('CreateMatch')
-        .controller('CreateMatchController', ['$scope', '$http', '$state', 'PATHS' ,CreateMatchController]);
+        .controller('CreateMatchController', ['$scope', '$http', '$state', 'PATHS', 'LoginService', 'toaster' ,CreateMatchController]);

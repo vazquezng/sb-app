@@ -8,7 +8,7 @@ import './controllers/view_profile.controller.ts';
 angular
   .module('Profile')
   .config(['$stateProvider', function($stateProvider){
-    const tplAppProfile = <string> require('../../templates/profile/view_profile.html');
+    // const tplAppProfile = <string> require('../../templates/profile/view_profile.html');
     $stateProvider.state('app.profile', {
         url: '/profile',
         views: {
@@ -18,7 +18,7 @@ angular
                 controllerAs: 'vm'
             }
         }
-        
+
     });
   }]);
 

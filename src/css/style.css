@@ -138,6 +138,19 @@ body form select.minimal {
     border-radius: 0;
 }
 
+body .btn {
+    background-color: #5ca3d4;
+    color: #fff;
+    border-radius: 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none;
+}
+
 .angular-google-map-container {
     height: 300px;
+}
+
+.matchDetail .players .btn {
+    margin-bottom: 4px;
 }

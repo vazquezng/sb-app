@@ -1,0 +1,118 @@
+.matchHistory {
+    .titleDiv {
+        height: 186px;
+        /*padding-top: 100px;*/
+        background-image: url(../img/title-sides-white.png);
+        background-repeat: repeat-x;
+        text-align: center;
+        .centerTitle {
+            width: 776px;
+            height: 100%;
+            margin: auto;
+            display: inline-block;
+            background-image: url(../img/center-title-white.png);
+            background-repeat: no-repeat;
+            font-family: CookieRegular;
+            font-size: 60px;
+            padding-top: 50px;
+            color: #00a5d7;
+        }
+    }
+    .container {
+        .historyTable {
+            text-align: center;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            .row {
+                display: flex;
+                flex-direction: column;
+            }
+            .matchBox {
+                border: #bababa 1px solid;
+                width: 350px;
+                height: 35px;
+                text-align: left;
+                padding: 6px;
+                margin: auto;
+                margin-bottom: 10px;
+                margin-bottom: 10px;
+                a.viewMatchDetail {
+                    float: right;
+                    margin: -2px;
+                    cursor: pointer;
+                    img {
+                        height: 25px;
+                        border: #fff 1px solid;
+                    }
+                }
+                .separator {
+                    border-left: 1px solid #00a5d7;
+                    display: inline-block;
+                    height: 70%;
+                    width: 1px;
+                    vertical-align: sub;
+                    margin-left: 5px;
+                    margin-right: 5px
+                }
+                .date {
+                    font-family: CookieRegular;
+                    font-size: 18px;
+                }
+                .clubName {
+                    font-family: RobotoLight;
+                    font-size: 11px;
+                }
+            }
+            .futureMatch {
+                background-color: #00a5d7;
+                .separator {
+                    border-left: 1px solid #fff;
+                    display: inline-block;
+                    height: 70%;
+                    width: 1px;
+                    vertical-align: sub;
+                }
+            }
+        }
+        .info {
+            height: 400px;
+            text-align: center;
+            font-family: RobotoLight;
+            font-size: 18px;
+            margin: auto;
+            span {
+                display: block;
+                padding-top: 10%;
+            }
+        }
+        @media (min-width: 768px) {
+            .container-small {
+                width: 300px;
+            }
+            .container-large {
+                width: 970px;
+            }
+        }
+        @media (min-width: 992px) {
+            .container-small {
+                width: 500px;
+            }
+            .container-large {
+                width: 1170px;
+            }
+        }
+        @media (min-width: 1200px) {
+            .container-small {
+                width: 700px;
+            }
+            .container-large {
+                width: 1500px;
+            }
+        }
+        .container-small,
+        .container-large {
+            max-width: 100%;
+            margin: auto;
+        }
+    }
+}

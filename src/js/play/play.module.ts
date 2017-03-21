@@ -9,7 +9,7 @@ import './controllers/play.controller.ts';
 angular
   .module('Play')
   .config(['$stateProvider', function($stateProvider){
-    const tplAppPlay = <string> require('./views/play.html');
+    // const tplAppPlay = <string> require('./views/play.html');
     $stateProvider.state('app.play', {
         url: '/play',
         views: {
@@ -24,7 +24,7 @@ angular
                 }
             }
         },
-        
+
     })
     .state('app.play-detail', {
         url: '/play/:id',
@@ -40,6 +40,6 @@ angular
                 }
             }
         },
-        
+
     });
   }]);
