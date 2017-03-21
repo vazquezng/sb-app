@@ -8,7 +8,6 @@ import './controllers/create_match.controller.ts';
 angular
   .module('CreateMatch')
   .config(['$stateProvider', function($stateProvider){
-    //const tplAppCreateMatch = <string> require('./views/create_match.html');
     $stateProvider.state('app.createMatch', {
         url: '/create-match',
         views: {

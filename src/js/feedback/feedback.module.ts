@@ -8,14 +8,13 @@ import './controllers/feedback.controller.ts';
 angular
   .module('Feedback')
   .config(['$stateProvider', function($stateProvider){
-    // const tplFeedback = <string> require('./views/feedback.html');
     $stateProvider.state('app.feedback', {
         url: '/feedback/:match_id/:user_id',
         views: {
             'menuContent': {
-                templateUrl: './templates/feedback/feedback.html',
+                templateUrl: './templates/feedback/_feedback.html',
                 controller: 'FeedbackController',
-                controllerAs: 'vm',
+                controllerAs: 'vm'
             }
         },
         resolve:{
