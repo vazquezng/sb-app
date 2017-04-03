@@ -1,0 +1,37 @@
+<ion-view view-title='<img src="./img/logo-header.png"/>'>
+    <ion-content class="profile me-califications">
+        <h1 style="font-size: 42px;margin: 12px 0 30px;">¿Qué opinaron de mí?</h1>
+        <div class="container">
+            <div class="boxItem" ng-repeat="feedback in vm.feedbacks"> 
+                <div class="imgContainer">
+                    <img src="{{feedback.image}}">
+                </div>
+                <div class="textContainer">
+                    <div class="boxTitle">
+                        <div class="userName">
+                            {{feedback.name}}
+                        </div>
+                        <div class="dateTime">
+                            {{feedback.date}}
+                        </div>
+                    </div>
+                    <div class="conntent">
+                        <div class="comment">
+                            <img src="/img/play/openQT.png" />
+                            <div class="text">
+                                {{feedback.comment}}
+                            </div>
+                            <img class="closeQT" src="/img/play/closeQT.png" />
+                        </div>
+                        <div class="btnContainer">
+                            <input type="image" name="submit" src="/img/play/eye-icon.png" border="0" alt="Submit"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="!vm.feedbacks.length" class="info" style="text-align: center;">
+                <span>Aún no tenés calificaciones.</span>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

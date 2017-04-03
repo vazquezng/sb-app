@@ -22,3 +22,13 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "./play";
 @import "./match_history";
 @import "./match_detail";
+@import "./my_califications";
+
+body {
+  textarea {
+    resize : none;
+    width: 100%;
+    border-bottom: 1px solid #5ca3d4;
+    margin-bottom: 5px;
+  }
+}

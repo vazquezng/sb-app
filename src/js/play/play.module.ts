@@ -33,13 +33,12 @@ angular
                 templateUrl: 'templates/match/playDetail.html',
                 controller: 'PlayDetailController',
                 controllerAs: 'vm',
-                resolve:{
-                  Match:['$http', 'PATHS', '$stateParams', function($http, PATHS, $stateParams){
-                    return $http.get(PATHS.api + '/match/'+$stateParams.id);
-                  }]
-                }
             }
         },
-
+        resolve:{
+          Match:['$http', 'PATHS', '$stateParams', function($http, PATHS, $stateParams){
+            return $http.get(PATHS.api + '/match/'+$stateParams.id);
+          }]
+        }
     });
   }]);

@@ -1,16 +1,14 @@
 export class MyCalificationsController 
 {   
-    static $inject = ['$http', '$state', 'PATHS'];
+    static $inject = ['Califications', '$state'];
 
     public feedbacks;
 
-    constructor(private $http, private $state, private PATHS){
+    constructor(private Califications, private $state){
         const vm = this;
-        vm.$http.get(vm.PATHS.api + '/feedback/califications').then(function(resp){
-                vm.feedbacks = resp.data.feedbacks;
-            });
+        this.feedbacks = Califications.data.feedbacks;
     }
 }
 
 angular.module('MyCalifications')
-        .controller('MyCalificationsController', ['$http', '$state', 'PATHS', MyCalificationsController]);
+        .controller('MyCalificationsController', [ 'Califications', '$state', MyCalificationsController]);

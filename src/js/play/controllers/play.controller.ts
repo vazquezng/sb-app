@@ -22,7 +22,7 @@ export class PlayController
     }
     public detail(id){
       console.log(id);
-        this.$state.go('app.play-detail',{id:id});
+      this.$state.go('app.play-detail',{id:id});
     }
 
     public openModalPlay(match){
@@ -61,9 +61,9 @@ class PlayDetailController {
         this.user = LoginService.getUser();
         const vm =  this;
         this.match = Match.data.match;
-        this.match.users.forEach(function(user){
-            if(user.id === vm.match.id_user){
-                vm.match.userCreate = user;
+        this.match.matchPlayer.forEach(function(player){
+            if(player.id_user === vm.match.id_user){
+                vm.match.userCreate = player.user;
             }
         });
     }

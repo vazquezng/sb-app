@@ -26,10 +26,21 @@
     .feedbackBtn {
         vertical-align: text-bottom;
     }
+    .suggestedPlayers{
+        vertical-align: text-bottom;
+        margin-left: 10px;
+    }
     .players {
         display: flex;
         justify-content: space-between;
-        align-items: baseline;
+        align-items: flex-start;
+    }
+    .status {
+        margin: 0 auto;
+        font-size: 12px;
+        font-weight: 900;
+        color: #5ca3d4;
+        margin-left: 5px;
     }
     .form-group {
         margin-bottom: 10px;

@@ -27,7 +27,7 @@ function LoginService($state, $rootScope, $http, PATHS){
       window.localStorage.removeItem('token');
       window.localStorage.removeItem('user');
 
-      (<any>window).location ='/';
+      (<any>window).location ='#!/login';
    }
 
     this.isAuth =  function(){

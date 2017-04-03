@@ -33,16 +33,16 @@
                 <ion-item menu-close ui-sref="app.matchHistory">
                     Mis Partidos
                 </ion-item>
-                <ion-item menu-close>
+                <ion-item menu-close ui-sref="app.myCalifications">
                     Mis Calificaciones
                 </ion-item>
-                <ion-item menu-close>
+                <!--ion-item menu-close ui-sref="app.logros">
                     Mis Logros
-                </ion-item>
-                <ion-item menu-close>
+                </ion-item-->
+                <!--ion-item menu-close>
                     Canchas
-                </ion-item>
-                <ion-item menu-close>
+                </ion-item-->
+                <ion-item menu-close ng-click="vm.logout()">
                     Cerrar Sessión
                 </ion-item>
             </ion-list>

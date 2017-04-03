@@ -13,8 +13,17 @@ angular
     $stateProvider
     .state('app.myCalifications', {
         url: '/my_califications',
-        templateUrl: './templates/my_califications/my_califications.html',
-        controller: 'MyCalificationsController',
-        controllerAs: 'vm'
+        views: {
+            'menuContent': {
+              templateUrl: './templates/my_califications/my_califications.html',
+              controller: 'MyCalificationsController',
+              controllerAs: 'vm'
+            },
+        },
+        resolve:{
+          Califications: ['$http', 'PATHS', function($http, PATHS) {
+            return $http.get(PATHS.api + '/feedback/califications');
+          }],
+        },
     });
   }]);

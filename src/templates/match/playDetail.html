@@ -27,23 +27,25 @@
                 <img class="mapImg" src="/img/match/mock-map.png" ng-click="vm.openMaps(match.address_lat, match.address_lng)" />
             </div>
         </div>
-        <div class="group">
+        <div class="group" style="justify-content: center;">
+          <div class="item">
+            <img ng-src="/img/play/{{vm.match.type}}-btn.png" />
+          </div>
+        </div>
+        <div class="group" style="justify-content: center;">
             <div class="item" style="text-transform: uppercase;">
                 Mirá los jugadores <span>ya anotados</span>
-            </div>
-            <div class="item">
-                <img src="/img/play/doubles-btn.png" />
             </div>
         </div>
         <div class="playerGrid">
             <div class="row">
-                <div class="col-xs-3 col-center-block" ng-repeat="user in vm.match.users">
+                <div class="col-xs-3 col-center-block" ng-repeat="player in vm.match.matchPlayer">
                     <div class="imgContainer">
-                        <img ng-src="{{user.image}}" ng-if="::user.image!= '' && user.image!= null" />
-                        <img ng-src="./img/profile/profile-blank.png" ng-if="::user.image== '' || user.image== null" />
+                        <img ng-src="{{player.user.image}}" ng-if="::player.user.image!= '' && player.user.image!= null" />
+                        <img ng-src="./img/profile/profile-blank.png" ng-if="::player.user.image== '' || player.user.image== null" />
                     </div>
                     <div class="userName">
-                        {{user.first_name}}</br><span>{{user.last_name}}</span>
+                        {{player.user.first_name}}</br><span>{{player.user.last_name}}</span>
                     </div>
                 </div>
             </div>

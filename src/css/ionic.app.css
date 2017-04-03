@@ -10157,7 +10157,6 @@ a.button {
     flex-direction: column; }
   .matchHistory .container .historyTable .matchBox {
     border: #bababa 1px solid;
-    width: 350px;
     height: 35px;
     text-align: left;
     padding: 6px;
@@ -10251,9 +10250,104 @@ a.button {
     display: inline-block; }
   .matchDetail .feedbackBtn {
     vertical-align: text-bottom; }
+  .matchDetail .suggestedPlayers {
+    vertical-align: text-bottom;
+    margin-left: 10px; }
   .matchDetail .players {
     display: flex;
     justify-content: space-between;
-    align-items: baseline; }
+    align-items: flex-start; }
+  .matchDetail .status {
+    margin: 0 auto;
+    font-size: 12px;
+    font-weight: 900;
+    color: #5ca3d4;
+    margin-left: 5px; }
   .matchDetail .form-group {
     margin-bottom: 10px; }
+
+.me-califications .titleDiv {
+  height: 186px;
+  /*padding-top: 100px;*/
+  background-image: url(../img/title-sides-gray.png);
+  background-repeat: repeat-x;
+  text-align: center; }
+  .me-califications .titleDiv .centerTitle {
+    width: 772px;
+    margin: auto;
+    display: inline-block;
+    background-image: url(../img/center-title-gray.png);
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    font-family: CookieRegular;
+    font-size: 60px;
+    padding-top: 50px;
+    color: #00a5d7; }
+
+.me-califications .container {
+  margin-bottom: 50px; }
+  .me-califications .container .boxItem {
+    background-color: #f2f2f2;
+    width: 100%;
+    padding: 15px 0;
+    margin-top: 20px;
+    text-align: center; }
+    .me-califications .container .boxItem .imgContainer {
+      padding: 5px;
+      width: 139px;
+      height: 139px;
+      background-image: url(../img/profile/back-profile.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      display: inline-block;
+      vertical-align: top; }
+      .me-califications .container .boxItem .imgContainer img {
+        margin-top: 10px;
+        width: 122px;
+        height: 122px;
+        border-radius: 60px; }
+    .me-califications .container .boxItem .textContainer {
+      display: inline-block;
+      width: 87%; }
+      .me-califications .container .boxItem .textContainer .boxTitle {
+        width: 100%;
+        border-bottom: 1px solid #818184; }
+        .me-califications .container .boxItem .textContainer .boxTitle .userName {
+          display: inline-block;
+          color: #20a3d4;
+          font-family: RobotoLight;
+          font-size: 16px; }
+        .me-califications .container .boxItem .textContainer .boxTitle .dateTime {
+          float: right;
+          font-family: CookieRegular;
+          font-size: 18px; }
+      .me-califications .container .boxItem .textContainer .comment {
+        display: inline-block;
+        width: 100%;
+        margin-top: 10px; }
+        .me-califications .container .boxItem .textContainer .comment .text, .me-califications .container .boxItem .textContainer .comment img {
+          display: inline-block; }
+        .me-califications .container .boxItem .textContainer .comment .closeQT {
+          float: right;
+          margin-right: 10px; }
+      .me-califications .container .boxItem .textContainer .btnContainer {
+        display: inline-block;
+        text-align: right;
+        vertical-align: bottom;
+        float: right;
+        margin-top: 20px; }
+  .me-califications .container .info {
+    height: 400px;
+    text-align: center;
+    font-family: RobotoLight;
+    font-size: 18px;
+    margin: auto; }
+    .me-califications .container .info span {
+      padding-top: 15%;
+      display: block; }
+
+body textarea {
+  resize: none;
+  width: 100%;
+  border-bottom: 1px solid #5ca3d4;
+  margin-bottom: 5px; }
