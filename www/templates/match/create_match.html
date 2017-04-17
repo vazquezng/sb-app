@@ -10,7 +10,7 @@
                     <label>FECHA</label>
                 </div>
                 <div class="col">
-                    <input required type="time" step="1800" placeholder="HH:mm:ss" class="form-control" ng-model="vm.match.hour" required>
+                    <input required="" type="time" step="1800" placeholder="HH:mm:ss" class="form-control" ng-model="vm.match.hour" required>
                     <label>HORA</label>
                 </div>
             </div>
@@ -25,7 +25,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <input type="text" class="form-control" ng-model="vm.match.club_name">
+                    <input type="text" class="form-control" ng-model="vm.match.club_name" ng-required="{{vm.match.address == ''}}">
                     <label for="inputAddress">NOMBRE DEL CLUB</label>
                 </div>
             </div>
@@ -90,11 +90,11 @@
                     <label>SEXO</label>
                 </div>
                 <div class="col">
-                    <select class="form-control minimal" name="inputGender" id="inputGender" ng-model="vm.match.type" required>
-                      <option value="singles" >Singles</option>
-                      <option value="dobles">Dobles</option>
-                    </select>
-                    <label>TIPO DE PARTIDO</label>
+                  <select class="form-control minimal" name="inputGender" id="inputGender" ng-model="vm.match.type" required>
+                    <option value="singles">Singles</option>
+                    <option value="dobles">Dobles</option>
+                  </select>
+                  <label>TIPO DE PARTIDO</label>
                 </div>
             </div>
             <div class="row">
@@ -104,11 +104,11 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <input type="text" onkeypress="return validaNumber(event)" class="form-control minimal" maxlength="2" minlength="2" ng-model="vm.match.years_from" required/>
+                    <input type="text" onkeypress="return validaNumber(event)" class="form-control minimal" ng-model="vm.match.years_from" required/>
                     <label>DESDE</label>
                 </div>
                 <div class="col">
-                    <input type="text" onkeypress="return validaNumber(event)" class="form-control minimal" maxlength="2" minlength="2" ng-model="vm.match.years_to" required/>
+                    <input type="text" onkeypress="return validaNumber(event)" class="form-control minimal" ng-model="vm.match.years_to" required/>
                     <label>HASTA</label>
                 </div>
             </div>

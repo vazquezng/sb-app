@@ -19,6 +19,8 @@
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashScreen" value="screen" />
     <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="TwitterConsumerKey" value="BZCxeNUUKOkj2WarJTv9TEGzI" />
+    <preference name="TwitterConsumerSecret" value="k7VeUkRu89a41mbmuuZrQwwudh53EyrDX9iyNO2kX5blgMzy5I" />
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
@@ -49,6 +51,8 @@
         <icon height="58" src="resources/ios/icon/icon-small@2x.png" width="58" />
         <icon height="87" src="resources/ios/icon/icon-small@3x.png" width="87" />
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
+        <preference name="deployment-target" value="7.0" />
+        <preference name="CameraUsesGeolocation" value="false" />
     </platform>
     <platform name="android">
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />

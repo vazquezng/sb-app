@@ -37,7 +37,7 @@ const URL_BUCKET = {
 process.env.ENVIRONMENT = 'dev';
 process.env.URL_BUCKET = URL_BUCKET[process.env.ENVIRONMENT];
 process.env.URL_API = 'http://192.168.33.10/api/v1';
-process.env.FACEBOOK_ID = '353935338297275';
+process.env.FACEBOOK_ID = '188438681613821';
 process.env.TWITTER_ID = '';
 
 gulp.task('envProd', (cb) => {
@@ -206,4 +206,5 @@ gulp.task('default', ['sass']);
 gulp.task('watchandroid', ['watchsass', 'envAndroid', 'webpack-dev-server']);
 
 
+gulp.task('androidLocal', ['sass', 'envAndroid', 'copy', 'webpack']);
 gulp.task('android', ['sass', 'envAndroid', 'envProd', 'copy', 'webpack']);

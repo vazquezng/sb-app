@@ -1,0 +1,23 @@
+<ion-view view-title='<img src="./img/logo-header.png"/>'>
+    <ion-content class="profile matchHistory">
+        <h1>Mis Partidos</h1>
+        <div class="container">
+            <div class="historyTable container-small">
+                <div class="row" style="flex-direction: column-reverse">
+                    <div class="col-xs-6" ng-repeat="match in vm.matches">
+                        <div class="matchBox" ng-class="{futureMatch: match.futureMatch}">
+                            <label class="clubName">{{match.club_name}}</label>
+                            <div class="separator"></div>
+                            <label class="date">{{match.date}} - {{match.hour}}</label>
+                            <!--input type="image" name="submit" src="/img/play/eye-icon.png" border="0"  /-->
+                            <a class="viewMatchDetail" ng-click="vm.showDetail(match.id)"><img src="/img/play/eye-icon.png" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="!vm.matches.length" class="info">
+                <span>Aún no tenés partidos creados, para crear uno hace click en <a ui-sref="app.createMatch">Crear Partido</a>.</span>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

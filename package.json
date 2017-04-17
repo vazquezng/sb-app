@@ -3,6 +3,7 @@
   "version": "1.1.1",
   "description": "sb-app: An Ionic project",
   "dependencies": {
+    "@ionic-native/twitter-connect": "^3.4.4",
     "angular": "^1.6.1",
     "angular-animate": "^1.6.1",
     "angular-google-maps": "^2.4.1",

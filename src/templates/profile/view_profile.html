@@ -11,11 +11,12 @@
                     <img ng-src="{{vm.avatar}}" class="image-profile" style="margin-top: 3px;border-radius: 164px;width: 160px;height: 160px;" />
                 </div>
                 <div class="col" style="padding-top: 14%;padding-left: 4%;">
-                    <div style="margin-bottom: 10%;background: url('./img/camare.png') left center; background-repeat:no-repeat">
+                    <div style="margin-bottom: 10%;background: url('./img/camare.png') left center; background-repeat:no-repeat" ng-click="vm.getPictureCam()">
                         <span style="padding-left: 35px;">Tomar Foto</span>
                     </div>
                     <hr>
-                    <div style="background: url('./img/image.png') left center; background-repeat:no-repeat">
+                    <div style="background: url('./img/image.png') left center; background-repeat:no-repeat"
+                    ng-click="vm.getPictureAlbum()">
                         <span style="padding-left: 35px;">Seleccionar</span>
                     </div>
                 </div>

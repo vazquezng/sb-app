@@ -1,8 +1,9 @@
 import * as angular from 'angular';
+// import { TwitterConnect } from '@ionic-native/twitter-connect';
 
 export class LoginController
 {
-    static $inject = ['$http','PATHS', 'LoginService', '$ionicLoading', '$state', '$cordovaOauth'];
+    static $inject = ['$http','PATHS', 'LoginService', '$ionicLoading', '$state'];
     private params = {};
     constructor(private $http, private PATHS, private LoginService, private $ionicLoading, private $state, private $cordovaOauth){
     }
@@ -52,7 +53,7 @@ export class LoginController
 
                     // ask the permissions you need. You can learn more about FB permissions
                     //  here: https://developers.facebook.com/docs/facebook-login/permissions/v2.4
-                    (<any>window).facebookConnectPlugin.login(["email", "public_profile", "user_friends"], fbLoginSuccess, fbLoginError);
+                    (<any>window).facebookConnectPlugin.login(["public_profile"], fbLoginSuccess, fbLoginError);
                 }
             });
     }
@@ -60,9 +61,22 @@ export class LoginController
     private twitter(){
         //$state.go('app.profile');
         const vm = this;
-        this.$cordovaOauth.twitter('Zn0FeVdQOJ6Owo23eiwj2Agil', 'cPUQa4vbj8DELrGT03ssgEphYhDufu9Zf0RU6X4hBQH5nyXdFB').then(function(resp) {
+        (<any>window).TwitterConnect.login(
+          function(result) {
+            console.log('Successful login!');
+            console.log(result);
+            vm.$http.post(vm.PATHS.api + '/auth/twitter/mobile', {id: result.userId, userName: result.userName})
+            .then((resp)=>{
+                vm.LoginService.login(resp.data);
+            });
+          }, function(error) {
+            console.log('Error logging in');
+            console.log(error);
+          }
+        );
+        /* this.$cordovaOauth.twitter('Zn0FeVdQOJ6Owo23eiwj2Agil', 'cPUQa4vbj8DELrGT03ssgEphYhDufu9Zf0RU6X4hBQH5nyXdFB').then(function(resp) {
             console.log(resp);
-        });
+        }); */
         //(<any>window).location = (<any>window).API_URL.replace('/api/v1', '') + '/auth/twitter' ;
     }
 
@@ -101,5 +115,5 @@ class AuthTwitterController{
 }
 
 angular.module('Login')
-        .controller('LoginController', ['$http', 'PATHS', 'LoginService', '$ionicLoading', '$state', '$cordovaOauth', LoginController])
+        .controller('LoginController', ['$http', 'PATHS', 'LoginService', '$ionicLoading', '$state', LoginController])
         .controller('AuthTwitterController', ['User', 'LoginService', '$stateParams', AuthTwitterController]);

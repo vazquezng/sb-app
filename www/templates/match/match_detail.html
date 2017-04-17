@@ -1,0 +1,117 @@
+<ion-view view-title='<img src="./img/logo-header.png"/>'>
+    <ion-content class="profile matchDetail">
+        <h1>Detalle del Partido</h1>
+        <form>
+            <div class="row-form">
+                <!--div class="column"-->
+                <div class="column">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="inputDate" id="inputDate" ng-model="vm.match.date" disabled="true" />
+                        <label for="inputDate">Fecha</label>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="inputTime" id="inputTime" ng-model="vm.match.hour" disabled="true" />
+                        <label for="inputTime">Hora</label>
+                    </div>
+                </div>
+                <!--/div-->
+            </div>
+            <div class="row-form">
+                <div class="column">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="inputLocation" id="inputLocation" ng-model="vm.match.address" disabled="true" />
+                        <label for="inputLocation">Lugar</label>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="inputClubName" id="inputClubName" ng-model="vm.match.club_name" disabled="true" />
+                        <label for="inputLocation">Nombre de club</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row-form">
+                <div class="column">
+                    <div class="column">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="inputGameLevel" id="inputGameLevel" ng-model="vm.match.game_level_from" disabled="true" />
+                            <label for="inputGameLevel">Nivel de juego desde</label>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="inputGameLevel" id="inputGameLevel" ng-model="vm.match.game_level_to" disabled="true" />
+                            <label for="inputGameLevel">Nivel de juego hasta</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="inputType" id="inputType" ng-model="vm.match.type" disabled="true" />
+                        <label for="inputType">Tipo de partido</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row-form">
+                <div class="column">
+                    <div class="column">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="inputAge" id="inputAge" ng-model="vm.match.years_from" disabled="true" />
+                            <label for="inputAge">Edad Desde</label>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="inputAge" id="inputAge" ng-model="vm.match.years_to" disabled="true" />
+                            <label for="inputAge">Edad Hasta</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="inputGender" id="inputGender" ng-model="vm.match.sexo" disabled="true" />
+                        <label for="inputGender">Sexo</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row-form players" ng-repeat="matchPlayer in vm.match.matchPlayer">
+            <div class="form-group userFeedback">
+                <a ui-sref="app.user_detail({user_id: matchPlayer.user.id})"><input type="text" class="form-control" name="inputPlayer" id="inputPlayer" ng-model="matchPlayer.user.first_name" disabled="true" /></a>
+                <label for="inputPlayer">Jugador</label>
+            </div>
+            <div ng-if="matchPlayer.user.id != vm.user.id">
+                <button type="submit" class="btn feedbackBtn" ng-if="!vm.match.futureMatch" ng-click="vm.createFeedback(vm.match.id, matchPlayer.user.id)">DANOS TU FEEDBACK</button>
+                <div ng-if="matchPlayer.state == 'pendingRequest'">
+                    <button type="submit" class="btn feedbackBtn" ng-if="vm.match.futureMatch" ng-click="vm.acceptUser(matchPlayer.id)">ACEPTAR</button>
+                    <button type="submit" class="btn feedbackBtn" ng-if="vm.match.futureMatch" ng-click="vm.refuseUser(matchPlayer.id)">RECHAZAR</button>
+                </div>
+                <div class="status" ng-if="vm.match.futureMatch && matchPlayer.state == 'pendingInvitation'">
+                        INVITACIÓN ENVIADA
+                </div>
+            </div>
+            <div ng-if="matchPlayer.user.id == vm.user.id">
+                <div ng-if="matchPlayer.state == 'pendingInvitation'">
+                    <div ng-if="vm.match.id_user != vm.user.id">
+                        <button type="submit" class="btn feedbackBtn" ng-if="vm.match.futureMatch" ng-click="vm.acceptMatch(matchPlayer.id)">ACEPTAR</button>
+                        <button type="submit" class="btn feedbackBtn" ng-if="vm.match.futureMatch" ng-click="vm.refuseMatch(matchPlayer.id)">RECHAZAR</button>
+                    </div>
+                </div>
+                <div class="status" ng-if="vm.match.futureMatch && matchPlayer.state == 'pendingRequest'">
+                    SOLICITUD PENDIENTE
+                </div>
+            </div>
+            <div class="status" ng-if="matchPlayer.state == 'confirmed'">
+                CONFIRMADO
+            </div>
+            <div class="status" ng-if="matchPlayer.state == 'rejected'">
+                SOLICITUD RECHAZADA
+            </div>
+            <div class="status" ng-if="matchPlayer.state == 'invitationDeclined'">
+                INVITACIÓN RECHAZADA
+            </div>
+        </div>
+        </form>
+    </ion-content>
+</ion-view>

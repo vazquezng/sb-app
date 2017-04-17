@@ -1,3 +1,5 @@
+let vm;
+
 class ProfileController {
     static $inject = ['LoginService', '$http', '$state', '$scope', 'PATHS', 'Upload', 'toaster'];
 
@@ -32,11 +34,11 @@ class ProfileController {
     public stopSave = false;
     constructor (private LoginService, private $http, private $state, private $scope, private PATHS, private Upload,private toaster){
         if(!LoginService.isAuth()){
-            $state.go('app.home');
+            $state.go('login');
         }
 
         this.user = LoginService.getUser();
-        let vm =  this;
+        vm =  this;
         vm.avatar = this.user.image && this.user.image !== '' ? this.user.image : (<any>window).URL_BUCKET+'/img/profile/profile-blank.png';
         this.city = this.user.city;
         this.country = this.user.country;
@@ -91,8 +93,52 @@ class ProfileController {
         });*/
     }
 
-    private  saveAvailability(){
+     public getPictureCam(){
+        (<any>window).navigator.camera.getPicture(this.onSuccess, this.onFail, { quality: 25,
+            destinationType: (<any>window).Camera.DestinationType.FILE_URI,
+            sourceType: (<any>window).Camera.PictureSourceType.CAMERA,
+            encodingType: (<any>window).Camera.EncodingType.JPEG,
+        });
+    }
 
+    public getPictureAlbum(){
+        (<any>window).navigator.camera.getPicture(this.onSuccess, this.onFail, { quality: 25,
+            destinationType: (<any>window).Camera.DestinationType.FILE_URI,
+            sourceType: (<any>window).Camera.PictureSourceType.PHOTOLIBRARY,
+            encodingType: (<any>window).Camera.EncodingType.JPEG,
+        });
+    }
+
+    private onSuccess(imageURI){
+        vm.avatar = imageURI;
+
+        const options:any = new (<any>window).FileUploadOptions();
+        options.fileKey = "file";
+        options.fileName = 'filename.jpg'; 
+        options.mimeType = "image/jpeg";
+        options.headers.Authorization = 'Bearer ' + window.localStorage.getItem('token');
+        options.httpMethod = 'POST';
+        options.params = { // Whatever you populate options.params with, will be available in req.body at the server-side.
+                "description": "Uploaded from my phone"
+        };
+        options.chunkedMode = false;
+        console.log(options);
+
+        var ft = new (<any>window).FileTransfer();
+        ft.upload(imageURI, vm.PATHS.api + '/user/profile/imagestr', function(result){
+            console.log('ft.upload');
+            console.log(JSON.stringify(result));
+        }, function(error){
+            console.log('ft.upload.error');
+            console.log(JSON.stringify(error));
+        }, options);
+    }
+
+    private onFail(message) {
+        alert('Failed because: ' + message);
+    }
+
+    private  saveAvailability(){
         var params = {availability: this.availabilityList};
         const vm = this;
         this.$http.post(this.PATHS.api + '/user/saveAvailability', params).then(function(resp){
@@ -126,7 +172,7 @@ class ProfileController {
 
     public save(form){
         const vm = this;
-        if(!this.address.types || this.address.types [0]!="street_address" ){
+        if(this.address != this.user.address && (!this.address.types || this.address.types[0] != "street_address")){
              vm.toaster.pop({type: 'error', body: 'El campo dirección debe contener una dirección exácta',timeout: 2000});
              return;
         }

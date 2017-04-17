@@ -11,11 +11,12 @@
                     <img ng-src="{{vm.avatar}}" class="image-profile" style="margin-top: 3px;border-radius: 164px;width: 160px;height: 160px;" />
                 </div>
                 <div class="col" style="padding-top: 14%;padding-left: 4%;">
-                    <div style="margin-bottom: 10%;background: url('./img/camare.png') left center; background-repeat:no-repeat">
+                    <div style="margin-bottom: 10%;background: url('./img/camare.png') left center; background-repeat:no-repeat" ng-click="vm.getPictureCam()">
                         <span style="padding-left: 35px;">Tomar Foto</span>
                     </div>
                     <hr>
-                    <div style="background: url('./img/image.png') left center; background-repeat:no-repeat">
+                    <div style="background: url('./img/image.png') left center; background-repeat:no-repeat"
+                    ng-click="vm.getPictureAlbum()">
                         <span style="padding-left: 35px;">Seleccionar</span>
                     </div>
                 </div>
@@ -48,20 +49,6 @@
                     <label>SEXO</label>
                 </div>
             </div>
-
-            <div class="row ">
-                <div class="col">
-                    <input type="text" g-places-autocomplete ng-model="vm.country" />
-                    <label>PAIS</label>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <input type="text" g-places-autocomplete ng-model="vm.city" />
-                    <label>CIUDAD</label>
-                </div>
-            </div>
             <div class="row">
                 <div class="col">
                     <input type="text" g-places-autocomplete ng-model="vm.address" />
@@ -71,17 +58,17 @@
 
             <div class="row">
                 <div class="col">
-                    <select class="form-control minimal" name="inputGameLevel" id="inputGameLevel" ng-model="vm.user.game_level" required> 
-                            <option value="2.5">2.5</option> 
-                            <option value="3">3.0</option> 
-                            <option value="3.5">3.5</option> 
-                            <option value="4">4.0</option> 
-                            <option value="4.5">4.5</option> 
-                            <option value="5">5.0</option> 
-                            <option value="5.5">5.5</option> 
-                            <option value="6">6.0</option> 
-                            <option value="6.5">6.5</option> 
-                            <option value="7">7.0</option> 
+                    <select class="form-control minimal" name="inputGameLevel" id="inputGameLevel" ng-model="vm.user.game_level" required>
+                            <option value="2.5">2.5</option>
+                            <option value="3">3.0</option>
+                            <option value="3.5">3.5</option>
+                            <option value="4">4.0</option>
+                            <option value="4.5">4.5</option>
+                            <option value="5">5.0</option>
+                            <option value="5.5">5.5</option>
+                            <option value="6">6.0</option>
+                            <option value="6.5">6.5</option>
+                            <option value="7">7.0</option>
                         </select>
                     <label>NIVEL DE JUEGO</label>
                 </div>
@@ -96,13 +83,13 @@
             <div class="row" style="padding-top: 19px;">
                 <div class="col">
                     <div class="form-group">
-                        <input type="checkbox" class="form-control" ng-model="vm.user.single" required/>
+                        <input type="checkbox" class="form-control" ng-model="vm.user.single"/>
                         <label for="inputCity">SINLGES</label>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <input type="checkbox" class="form-control" ng-model="vm.user.double" required/>
+                        <input type="checkbox" class="form-control" ng-model="vm.user.double"/>
                         <label for="inputCity">DOBLES</label>
                     </div>
                 </div>
@@ -139,7 +126,7 @@
                 <div class="list" style="width:100%;margin-top:12px;margin-bottom: 2px;">
                     <label class="item item-input item-select" style="height: 30px;    height: 30px;border: none;border-bottom: 1px solid #00a5d7;">
                         <select style="right: inherit;" name="inputGender" id="inputPartnerClub" ng-model="vm.user.club_member">
-                            <option value="0">Ninguno</option> 
+                            <option value="0">Ninguno</option>
                         </select>
                     </label>
                 </div>
@@ -157,6 +144,7 @@
             <button class="button button-block button-outline button-calm" ng-click="vm.save(formProfile)">
                 Guardar
             </button>
+              <span ng-show="vm.completeForm" style="color:darkred">Completar los datos del formulario</span>
         </form>
     </ion-content>
 </ion-view>

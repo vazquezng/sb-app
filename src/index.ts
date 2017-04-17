@@ -3,7 +3,7 @@
 require('angular');
 
 /* global angular */
-(<any>window).jsSHA = require("jssha");
+// (<any>window).jsSHA = require("jssha");
 
 // Add Angular/Ionic dependencies
 require('angular-animate');
@@ -15,7 +15,7 @@ require('./lib/ionic/js/ionic-angular.js');
 
 // require('./lib/ionic/js/ionic.bundle.js');
 
-require('./lib/ng-cordova-oauth/dist/ng-cordova-oauth.min.js');
+// require('./lib/ng-cordova-oauth/dist/ng-cordova-oauth.min.js');
 
 //require('./js/core/app.js');
 //require('./js/core/controllers.js');

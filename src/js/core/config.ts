@@ -22,7 +22,7 @@ const NAME = 'ST-WEB';
 console.log('llego');
 const APP  = {
   NAME: NAME,
-  DEPENDENCIES: ['ionic', 'ngCordovaOauth','ui.router', 'google.places', 'ngFileUpload', 'rzModule', 'uiGmapgoogle-maps', 'toaster'],
+  DEPENDENCIES: ['ionic','ui.router', 'google.places', 'ngFileUpload', 'rzModule', 'uiGmapgoogle-maps', 'toaster'],
   ADD_MODULE: function (moduleName:string, dependencies?) {
     angular.module(moduleName, dependencies || []);
     angular.module(NAME).requires.push(moduleName);
