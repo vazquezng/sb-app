@@ -95,7 +95,7 @@ class ProfileController {
 
      public getPictureCam(){
         (<any>window).navigator.camera.getPicture(this.onSuccess, this.onFail, { quality: 25,
-            destinationType: (<any>window).Camera.DestinationType.FILE_URI,
+            destinationType: (<any>window).Camera.DestinationType.NATIVE_URI,
             sourceType: (<any>window).Camera.PictureSourceType.CAMERA,
             encodingType: (<any>window).Camera.EncodingType.JPEG,
         });
@@ -103,7 +103,7 @@ class ProfileController {
 
     public getPictureAlbum(){
         (<any>window).navigator.camera.getPicture(this.onSuccess, this.onFail, { quality: 25,
-            destinationType: (<any>window).Camera.DestinationType.FILE_URI,
+            destinationType: (<any>window).Camera.DestinationType.NATIVE_URI,
             sourceType: (<any>window).Camera.PictureSourceType.PHOTOLIBRARY,
             encodingType: (<any>window).Camera.EncodingType.JPEG,
         });

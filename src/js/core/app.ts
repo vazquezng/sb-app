@@ -71,6 +71,35 @@ angular.module(APP.NAME, APP.DEPENDENCIES)
                 // org.apache.cordova.statusbar required
                 (<any>window).StatusBar.styleDefault();
             }
+
+            // Enable to debug issues.
+            // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+            
+            var notificationOpenedCallback = function(jsonData) {
+              console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+              if(jsonData.section){
+                $state.go(jsonData.section, {id: jsonData.id})
+              }
+            };
+            // Set your iOS Settings
+            const iosSettings = {};
+            iosSettings["kOSSettingsKeyAutoPrompt"] = true;
+            iosSettings["kOSSettingsKeyInAppLaunchURL"] = false;
+            (<any>window).plugins.OneSignal
+              .startInit("04ca6438-f5a3-4af1-932b-e64b777b5216")
+              .iOSSettings(iosSettings)
+              .handleNotificationOpened(notificationOpenedCallback)
+              .endInit();
+
+            (<any>window).plugins.OneSignal.getIds(function(ids) {
+                console.log('getIds: ' + JSON.stringify(ids));
+                window.localStorage.setItem('onesignal-userId', ids.userId);
+                window.localStorage.setItem('onesignal-pushToken', ids.pushToken);
+              })
+              
+            // Call syncHashedEmail anywhere in your app if you have the user's email.
+            // This improves the effectiveness of OneSignal's "best-time" notification scheduling feature.
+            // window.plugins.OneSignal.syncHashedEmail(userEmail);
         });
     }]);
 
