@@ -1,7 +1,7 @@
-<ion-view view-title='<img src="./img/logo-header.png"/>'>
+<ion-view view-title='<img src="./img/logo-header.png"/>' hide-back-button="true">
     <ion-content class="profile">
         <h1>Tu perfil</h1>
-        <p>Completá los datos de tu perfil para contactarte con otros jugadores.</p>
+        <p style="text-align: center">Completá los datos de tu perfil para contactarte con otros jugadores.</p>
         <form name="formProfile" novalidate>
             <div class="row photo">
                 <div class="col" style="position:relative;">
@@ -32,7 +32,7 @@
                     <label>APELLIDO</label>
                 </div>
                 <div class="col">
-                    <input type="text" ng-model="vm.user.email" required/>
+                    <input type="email" ng-model="vm.user.email" required/>
                     <label>EMAIL</label>
                 </div>
             </div>
@@ -94,7 +94,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col">
                     <input type="text" ng-model="vm.user.coach" />
@@ -102,7 +101,8 @@
                 </div>
             </div>
             <div class="row" style="margin-top: 4px;">
-                <a style="width: 50%;padding-bottom: 5px;border-bottom: 1px solid #00a5d7;"><img ng-src="./img/calendar.png" /></a>
+                <a style="width: 50%;padding-bottom: 5px;border-bottom: 1px solid #00a5d7;" ng-click="vm.goAvailability()" ng-model="vm.user.availability">
+                <img ng-src="./img/calendar.png" /></a>
             </div>
             <div class="row">
                 <label>DISPONIBILIDAD</label>

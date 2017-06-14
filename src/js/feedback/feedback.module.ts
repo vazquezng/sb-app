@@ -9,6 +9,7 @@ angular
   .module('Feedback')
   .config(['$stateProvider', function($stateProvider){
     $stateProvider.state('app.feedback', {
+        cache: false,
         url: '/feedback/:match_id/:user_id',
         views: {
             'menuContent': {
@@ -21,6 +22,7 @@ angular
           Load: ['$http', '$state', 'PATHS', '$stateParams', function($http, $state, PATHS, $stateParams){
             return $http.get(PATHS.api + '/feedback/detail/' + $stateParams.match_id + '/' + $stateParams.user_id);
           }]
-        }
+        },
+        authenticate: true,
     });
   }]);

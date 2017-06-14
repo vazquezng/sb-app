@@ -1,50 +1,61 @@
 <ion-side-menus enable-menu-with-back-views="false">
     <ion-side-menu-content>
         <ion-nav-bar class="bar-stable">
-            <ion-nav-back-button>
-            </ion-nav-back-button>
-
             <ion-nav-buttons side="left">
-                <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
-        </button>
+                <button class="button button-icon button-clear ion-navicon" style="display:block !important;" menu-toggle="left">
+                </button>
             </ion-nav-buttons>
         </ion-nav-bar>
         <ion-nav-view name="menuContent"></ion-nav-view>
     </ion-side-menu-content>
 
-    <ion-side-menu side="left">
-        <ion-header-bar class="bar-stable">
-            <h1 class="title">Menu</h1>
+    <ion-side-menu id="menu" side="left" style="background-color: #000 !important;">
+        <ion-header-bar class="bar-stable" style="background-color: #000 !important;">
+            <img ng-src="{{vm.avatar}}" class="image-profile" style="margin-top: 3px;border-radius: 164px;width: 30px;height: 30px;" />
+            <h1 class="title" style="color:#07a1d9" ng-bind="vm.user.name ? vm.user.name : '>'"></h1>
         </ion-header-bar>
-        <ion-content>
-            <ion-list>
+        <ion-content style="background-color: #000 !important">
+            <ion-list style="background-color: #000 !important">
                 <!--ion-item menu-close>
                     Home
                 </ion-item-->
-                <ion-item menu-close ui-sref="app.profile">
-                    Profile
+                <ion-item menu-close ui-sref="app.profile" style="background-color: #000 !important;color:#fff">
+                    <img ng-src="{{URL_BUCKET}}/img/profile-icon.png"/> | Mi Perfil
                 </ion-item>
-                <ion-item menu-close ui-sref="app.createMatch">
-                    Crear Partido
+                <hr/>
+                <ion-item menu-close ui-sref="app.createMatch" style="background-color: #000 !important;color:#fff">
+                    <img ng-src="{{URL_BUCKET}}/img/quiero-jugar.png"/> | Crear Partido
                 </ion-item>
-                <ion-item menu-close ui-sref="app.play">
-                    Quiero Jugar
+                <hr/>
+                <ion-item menu-close ui-sref="app.play" style="background-color: #000 !important;color:#fff">
+                    <img ng-src="{{URL_BUCKET}}/img/quiero-jugar.png"/> | Quiero Jugar
                 </ion-item>
-                <ion-item menu-close ui-sref="app.matchHistory">
-                    Mis Partidos
+                <hr/>
+                <ion-item menu-close ui-sref="app.matchHistory" style="background-color: #000 !important;color:#fff">
+                    <img ng-src="{{URL_BUCKET}}/img/match-history-icon.png"/> | Mis Partidos
                 </ion-item>
-                <ion-item menu-close ui-sref="app.myCalifications">
-                    Mis Calificaciones
+                <hr/>
+                <ion-item menu-close ui-sref="app.myCalifications" style="background-color: #000 !important;color:#fff">
+                    <img ng-src="{{URL_BUCKET}}/img/my-califications-icon.png"/> | Mis Calificaciones
                 </ion-item>
+                <hr/>
                 <!--ion-item menu-close ui-sref="app.logros">
                     Mis Logros
                 </ion-item-->
                 <!--ion-item menu-close>
                     Canchas
                 </ion-item-->
-                <ion-item menu-close ng-click="vm.logout()">
-                    Cerrar Sessión
-                </ion-item>
+                <button menu-close ng-click="vm.logout()" style="background-color: #07a1d9;
+    border: none;
+    color: white;
+    width: 80%;
+    margin-left: 15px;
+    border-radius: 6px;
+    height: 40px;
+    margin-top: 50px;">Cerrar Sessión</button>
+                <!--ion-item menu-close ng-click="vm.logout()">
+
+                </ion-item-->
             </ion-list>
         </ion-content>
     </ion-side-menu>

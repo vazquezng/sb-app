@@ -10,6 +10,7 @@ angular
   .config(['$stateProvider', function($stateProvider){
     // const tplAppProfile = <string> require('../../templates/profile/view_profile.html');
     $stateProvider.state('app.profile', {
+        cache: false,
         url: '/profile',
         views: {
             'menuContent': {
@@ -17,8 +18,25 @@ angular
                 controller: 'ProfileController',
                 controllerAs: 'vm'
             }
-        }
-
+        },
+        authenticate: true,
+    })
+    .state('app.profile-availability', {
+        cache: false,
+        url: '/profile/availability',
+        views: {
+            'menuContent': {
+                templateUrl: './templates/profile/view_profile_availability.html',
+                controller: 'ProfileAvailabilityController',
+                controllerAs: 'vm'
+            }
+        },
+        resolve: {
+            Availability: ['$http', 'PATHS', '$ionicLoading', function($http, PATHS, $ionicLoading){
+                return $http.post(PATHS.api + '/user/retrieveUserAvailability');
+            }],
+        },
+        authenticate: true,
     });
   }]);
 

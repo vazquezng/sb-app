@@ -3,7 +3,6 @@
         <h1>Creá un Partido</h1>
         <p>Completá los datos y que el <span>juego empiece.</span></p>
         <form name="CreateMatch">
-
             <div class="row">
                 <div class="col">
                     <input type="date" data-date-format="DD MMMM YYYY" class="form-control" ng-model="vm.match.date" required>
@@ -17,22 +16,23 @@
 
             <div class="row ">
                 <div class="col">
-                    <select class="form-control minimal" name="inputGender" id="inputPartnerClub" ng-model="vm.match.address">
-                        <option value="0">Ninguno</option>
+                    <select class="form-control minimal" name="inputGender" id="inputPartnerClub" ng-model="vm.partner_club" ng-change="vm.changePartnerClub()"> 
+                        <option value="0" selected="selected">OTRA</option> 
+                        <option ng-repeat="cancha in vm.canchas" value="{{cancha.id}}" ng-if="cancha.state == 'confirmed'" ng-bind="cancha.name"></option>
                     </select>
-                    <label for="inputPlace">LUGAR</label>
+                    <label for="inputPlace">CANCHAS ABONADAS</label>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" ng-show="vm.partner_club==0">
                 <div class="col">
-                    <input type="text" class="form-control" ng-model="vm.match.club_name" ng-required="{{vm.match.address == ''}}">
+                    <input type="text" class="form-control" ng-model="vm.match.club_name">
                     <label for="inputAddress">NOMBRE DEL CLUB</label>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" ng-show="vm.partner_club==0">
                 <div class="col">
                     <input type="text" ng-model="vm.address" g-places-autocomplete placeholder="Indicar Dirección" ng-change="vm.changeAddress()" />
-                    <label>OTRO</label>
+                    <label>INGRESE DIRECCION</label>
                 </div>
             </div>
             <div class="row">
@@ -50,7 +50,7 @@
 
             <div class="row">
                 <div class="col">
-                    <select class="form-control minimal" name="inputGameLevelFrom" id="inputGameLevelFrom" required>
+                    <select class="form-control minimal" name="inputGameLevelFrom" id="inputGameLevelFrom" ng-model="vm.match.game_level_from" required>
                         <option value="2.5">2.5</option>
                         <option value="3.0">3.0</option>
                         <option value="3.5">3.5</option>
@@ -65,7 +65,7 @@
                     <label>DESDE</label>
                 </div>
                 <div class="col">
-                    <select class="form-control minimal" name="inputGameLevelTo" id="inputGameLevelTo" required>
+                    <select class="form-control minimal" ng-model="vm.match.game_level_to" name="inputGameLevelTo" id="inputGameLevelTo" required>
                             <option value="2.5">2.5</option>
                             <option value="3.0">3.0</option>
                             <option value="3.5">3.5</option>
@@ -104,11 +104,11 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <input type="text" onkeypress="return validaNumber(event)" class="form-control minimal" ng-model="vm.match.years_from" required/>
+                    <input type="number" onkeypress="return validaNumber(event)" class="form-control minimal" ng-model="vm.match.years_from" required/>
                     <label>DESDE</label>
                 </div>
                 <div class="col">
-                    <input type="text" onkeypress="return validaNumber(event)" class="form-control minimal" ng-model="vm.match.years_to" required/>
+                    <input type="number" onkeypress="return validaNumber(event)" class="form-control minimal" ng-model="vm.match.years_to" required/>
                     <label>HASTA</label>
                 </div>
             </div>

@@ -36,7 +36,7 @@ const URL_BUCKET = {
 
 process.env.ENVIRONMENT = 'dev';
 process.env.URL_BUCKET = URL_BUCKET[process.env.ENVIRONMENT];
-process.env.URL_API = 'http://192.168.33.10/api/v1';
+process.env.URL_API = 'http://api.socialtenis.dev/api/v1';//'http://192.168.33.10/api/v1';
 process.env.FACEBOOK_ID = '188438681613821';
 process.env.TWITTER_ID = '';
 
@@ -52,6 +52,9 @@ gulp.task('envProd', (cb) => {
 
 gulp.task('envAndroid', () => {
   process.env.COMPILE_ENV = 'android';
+});
+gulp.task('envIos', () => {
+    process.env.COMPILE_ENV = 'ios';
 });
 
 gulp.task('clean', () => {
@@ -201,6 +204,13 @@ gulp.task('deploy', shell.task([
   'rm -f platforms/android/build/outputs/apk/*'
 ]));
 
+gulp.task('ios', shell.task([
+    'cordova platform rm ios',
+    'cordova platform add ios',
+    'gulp iosTasks',
+    'ionic build ios',
+]));
+
 
 gulp.task('default', ['sass']);
 gulp.task('watchandroid', ['watchsass', 'envAndroid', 'webpack-dev-server']);
@@ -208,3 +218,4 @@ gulp.task('watchandroid', ['watchsass', 'envAndroid', 'webpack-dev-server']);
 
 gulp.task('androidLocal', ['sass', 'envAndroid', 'copy', 'webpack']);
 gulp.task('android', ['sass', 'envAndroid', 'envProd', 'copy', 'webpack']);
+gulp.task('iosTasks', ['sass', 'envIos', 'copy', 'webpack']);

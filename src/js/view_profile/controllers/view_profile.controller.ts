@@ -1,7 +1,7 @@
 let vm;
 
 class ProfileController {
-    static $inject = ['LoginService', '$http', '$state', '$scope', 'PATHS', 'Upload', 'toaster'];
+    static $inject = ['LoginService', '$http', '$state', '$scope', 'PATHS', 'Upload', 'toaster', '$ionicHistory'];
 
     public user;
     public image;
@@ -13,26 +13,15 @@ class ProfileController {
     public modalInstance;
     public availabilityList = [];
     public completeForm =false;
-    public timeList = [ '08:00','08:30',
-                        '09:00','09:30',
-                        '10:00','10:30',
-                        '11:00','11:30',
-                        '12:00','12:30',
-                        '13:00','13:30',
-                        '14:00','14:30',
-                        '15:00','15:30',
-                        '16:00','16:30',
-                        '17:00','17:30',
-                        '18:00','18:30',
-                        '19:00','19:30',
-                        '20:00','20:30',
-                        '21:00','21:30',
-                        '22:00','22:30',
-                        '23:00','23:30'];
-    public dayList = [ 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
+    private emailFormat = /^[a-z]+[a-z0-9._\-]+@[a-z]+\.[a-z]{2,5}\.?[a-z]{0,5}$/;
 
     public stopSave = false;
-    constructor (private LoginService, private $http, private $state, private $scope, private PATHS, private Upload,private toaster){
+    constructor (private LoginService, private $http, private $state, private $scope, private PATHS, private Upload,private toaster, private $ionicHistory){
+        $ionicHistory.clearHistory();
+        $ionicHistory.nextViewOptions({
+            disableBack: true
+        });
+
         if(!LoginService.isAuth()){
             $state.go('login');
         }
@@ -44,10 +33,15 @@ class ProfileController {
         this.country = this.user.country;
         this.address = this.user.address;
 
+        if((<any>window).localStorage.getItem('UserTmp-profile')){
+            vm.user = JSON.parse((<any>window).localStorage.getItem('UserTmp-profile'));
+            (<any>window).localStorage.removeItem('UserTmp-profile');
+        }
+
         this.user.game_level = this.user.game_level ? this.user.game_level.toString(): this.user.game_level;
         this.user.itn = this.user.itn ? this.user.itn.toString(): this.user.itn;
         this.user.single = (this.user.single==1);
-        this.user.double = (this.user.doble==1);
+        this.user.double = (this.user.double==1);
 
         $scope.$watch('image', function(newImage, lastImage){
             if(newImage && newImage !== lastImage){
@@ -69,73 +63,48 @@ class ProfileController {
                 });
             }
         });
-
-
-        $scope.save = function(){
-            vm.saveAvailability();
-        };
-    }
-
-    public openModalAvailable(){
-        let vm =  this;
-        this.$http.post(this.PATHS.api + '/user/retrieveUserAvailability').then(function(resp){
-            if(resp.data.availability){
-                vm.availabilityList = resp.data.availability;
-            }
-        });
-        /*this.modalInstance = this.$uibModal.open({
-            animation: true,
-            ariaLabelledBy: 'modal-title',
-            ariaDescribedBy: 'modal-body',
-            templateUrl: 'availability-profile',
-            size: 'md',
-            scope:this.$scope
-        });*/
     }
 
      public getPictureCam(){
         (<any>window).navigator.camera.getPicture(this.onSuccess, this.onFail, { quality: 25,
-            destinationType: (<any>window).Camera.DestinationType.NATIVE_URI,
+            destinationType: (<any>window).Camera.DestinationType.DATA_URL,
             sourceType: (<any>window).Camera.PictureSourceType.CAMERA,
             encodingType: (<any>window).Camera.EncodingType.JPEG,
+            correctOrientation: true,
+            cameraDirection: 1,
         });
     }
 
     public getPictureAlbum(){
         (<any>window).navigator.camera.getPicture(this.onSuccess, this.onFail, { quality: 25,
-            destinationType: (<any>window).Camera.DestinationType.NATIVE_URI,
+            destinationType: (<any>window).Camera.DestinationType.DATA_URL,
             sourceType: (<any>window).Camera.PictureSourceType.PHOTOLIBRARY,
             encodingType: (<any>window).Camera.EncodingType.JPEG,
         });
     }
 
     private onSuccess(imageURI){
-        vm.avatar = imageURI;
+        vm.avatar = 'data:image/jpeg;base64,'+imageURI;
+        const blob = vm.Upload.dataUrltoBlob('data:image/jpeg;base64,'+imageURI, 'avatar');
+        vm.Upload.upload({
+            url: vm.PATHS.api + '/user/profile/image',
+            data: {file: vm.Upload.rename(blob, 'avatar.jpg')}
+        }).then(function (resp) {
+            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+            vm.user.image = resp.data;
+            vm.avatar = resp.data;
+        }, function (resp) {
+            console.log('Error status: ' + resp.status);
+        }, function (evt:any) {
+            //let progressPercentage:any = parseInt( 100.0 * evt.loaded / evt.total );
+            //console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+        });
 
-        const options:any = new (<any>window).FileUploadOptions();
-        options.fileKey = "file";
-        options.fileName = 'filename.jpg'; 
-        options.mimeType = "image/jpeg";
-        options.headers.Authorization = 'Bearer ' + window.localStorage.getItem('token');
-        options.httpMethod = 'POST';
-        options.params = { // Whatever you populate options.params with, will be available in req.body at the server-side.
-                "description": "Uploaded from my phone"
-        };
-        options.chunkedMode = false;
-        console.log(options);
-
-        var ft = new (<any>window).FileTransfer();
-        ft.upload(imageURI, vm.PATHS.api + '/user/profile/imagestr', function(result){
-            console.log('ft.upload');
-            console.log(JSON.stringify(result));
-        }, function(error){
-            console.log('ft.upload.error');
-            console.log(JSON.stringify(error));
-        }, options);
+        vm.$scope.$apply();
     }
 
     private onFail(message) {
-        alert('Failed because: ' + message);
+        console.log('Failed because: ' + message);
     }
 
     private  saveAvailability(){
@@ -151,12 +120,17 @@ class ProfileController {
         });
     }
 
+    public goAvailability(){
+        (<any>window).localStorage.setItem('UserTmp-profile', JSON.stringify(this.user));
+        this.$state.go('app.profile-availability');
+    }
+
     public updateAvailability(weekDay, time){
         var index = this.availabilityList.indexOf(weekDay+'-'+time);
         if(index == -1){
-            this.availabilityList[this.availabilityList.length] = weekDay+'-'+time;
+          this.availabilityList[this.availabilityList.length] = weekDay+'-'+time;
         }else{
-            this.availabilityList.splice(index,1);
+          this.availabilityList.splice(index,1);
         }
     }
 
@@ -172,6 +146,10 @@ class ProfileController {
 
     public save(form){
         const vm = this;
+        if(!this.emailFormat.test(this.user.email)){
+            vm.toaster.pop({type: 'error', body: 'El email tiene un formato invalido.',timeout: 2000});
+            return;
+        }
         if(this.address != this.user.address && (!this.address.types || this.address.types[0] != "street_address")){
              vm.toaster.pop({type: 'error', body: 'El campo dirección debe contener una dirección exácta',timeout: 2000});
              return;
@@ -191,20 +169,77 @@ class ProfileController {
             this.$http.post(this.PATHS.api + '/user', this.user).then(function(resp){
                 vm.stopSave = false;
                 if(resp.data.success){
-                    vm.toaster.pop({type: 'success', body: 'Se guardo correctamente!',timeout: 2000});
+                    vm.toaster.pop({type: 'success', body: 'Tu perfil se guardó correctamente.',timeout: 2000});
                     vm.user.complete = true;
                     vm.LoginService.setUser(vm.user);
-                    //vm.$state.reload();
                 }else{
                     vm.toaster.pop({type: 'error', body: 'Hubo un error, intente más tarde',timeout: 2000});
                 }
             });
         }else{
+            vm.stopSave = false;
             //Darle un mensaje al usuario de que debe completar los datos
-            this.completeForm= true;
+            vm.toaster.pop({type: 'error', body: 'Completar todos los datos del formulario', timeout: 2000});
+        }
+    }
+}
+
+class ProfileAvailabilityController {
+    static $inject = ['Availability','LoginService', '$http', '$state', 'PATHS', 'toaster'];
+
+    public availabilityList = [];
+    public completeForm =false;
+    public timeList = [ '08:00','08:30',
+                        '09:00','09:30',
+                        '10:00','10:30',
+                        '11:00','11:30',
+                        '12:00','12:30',
+                        '13:00','13:30',
+                        '14:00','14:30',
+                        '15:00','15:30',
+                        '16:00','16:30',
+                        '17:00','17:30',
+                        '18:00','18:30',
+                        '19:00','19:30',
+                        '20:00','20:30',
+                        '21:00','21:30',
+                        '22:00','22:30',
+                        '23:00','23:30'];
+    public dayList = [ 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
+    constructor (private Availability, private LoginService, private $http, private $state, private PATHS, private toaster){
+        if(!LoginService.isAuth()){
+            $state.go('login');
+        }
+
+        this.availabilityList = Availability.data.availability;
+    }
+
+    public back(){
+        this.$state.go('app.profile');
+    }
+
+    public save(){
+        var params = {availability: this.availabilityList};
+        const vm = this;
+        this.$http.post(this.PATHS.api + '/user/saveAvailability', params).then(function(resp){
+            if(resp.data.success){
+                vm.toaster.pop({type: 'success', body: 'Tu disponibilidad se guardo correctamente!', timeout: 2000});
+            }else{
+                vm.toaster.pop({type: 'error', body: 'Ocurrió un error al guardar tu disponibilidad', timeout: 2000});
+            }
+        });
+    }
+
+    public updateAvailability(weekDay, time){
+        var index = this.availabilityList.indexOf(weekDay+'-'+time);
+        if(index == -1){
+            this.availabilityList[this.availabilityList.length] = weekDay+'-'+time;
+        }else{
+            this.availabilityList.splice(index,1);
         }
     }
 }
 
 angular.module('Profile')
-    .controller('ProfileController', ['LoginService', '$http', '$state', '$scope', 'PATHS', 'Upload', 'toaster', ProfileController]);
+    .controller('ProfileController', ['LoginService', '$http', '$state', '$scope', 'PATHS', 'Upload', 'toaster', '$ionicHistory', ProfileController])
+    .controller('ProfileAvailabilityController', ['Availability', 'LoginService', '$http', '$state', 'PATHS', 'toaster', ProfileAvailabilityController]);

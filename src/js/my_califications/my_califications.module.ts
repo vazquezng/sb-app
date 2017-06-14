@@ -25,5 +25,6 @@ angular
             return $http.get(PATHS.api + '/feedback/califications');
           }],
         },
+        authenticate: true,
     });
   }]);

@@ -6,6 +6,10 @@ export class LoginController
     static $inject = ['$http','PATHS', 'LoginService', '$ionicLoading', '$state'];
     private params = {};
     constructor(private $http, private PATHS, private LoginService, private $ionicLoading, private $state, private $cordovaOauth){
+        if (LoginService.isAuth()) {
+            // User isn’t authenticated
+            $state.transitionTo("app.profile");
+        }
     }
 
     public authenticate = function(provider:string){

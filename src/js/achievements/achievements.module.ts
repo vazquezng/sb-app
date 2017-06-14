@@ -9,6 +9,7 @@ angular
   .config(['$stateProvider', function($stateProvider){
     // const tplApp = <string> require('./views/achievements.html');
     $stateProvider.state('app.logros', {
+      cache: false,
       url: '/logros',
       views: {
         'menuContent': {
@@ -21,6 +22,7 @@ angular
         Logros:['$http', 'PATHS', function($http, PATHS){
           return $http.get(PATHS.api + '/match');
         }]
-      }
+      },
+      authenticate: true,
     });
   }]);

@@ -17,6 +17,24 @@ angular
                 controllerAs: 'vm'
             }
         },
-        
+        resolve:{
+          UserComplete:['$http', 'PATHS', 'LoginService', 'toaster', '$state', '$ionicLoading', '$q',
+          function($http, PATHS, LoginService, toaster, $state, $ionicLoading, $q){
+            const deferred = $q.defer();
+            if(!LoginService.getUser().complete){
+              $ionicLoading.hide();
+              toaster.pop({type:'error', body:'Debe completar su perfil primero.'});
+              $state.go('app.profile');
+              deferred.reject(false);
+            }else{
+              deferred.resolve(true);
+            }
+            return deferred.promise;
+          }],
+          Canchas:['$http', 'PATHS', function($http, PATHS){
+            return $http.get(`${PATHS.api}/canchas`);
+          }],
+        },
+        authenticate: true,
     });
   }]);

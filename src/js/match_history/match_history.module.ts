@@ -10,6 +10,7 @@ angular
   .config(['$stateProvider', function($stateProvider){
     // const tplMatchHistory = <string> require('./views/match_history.html');
     $stateProvider.state('app.matchHistory', {
+        cache: false,
         url: '/match_history',
         views: {
             'menuContent': {

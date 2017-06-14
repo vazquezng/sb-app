@@ -11,22 +11,31 @@ angular
   .config(['$stateProvider', function($stateProvider){
     // const tplAppPlay = <string> require('./views/play.html');
     $stateProvider.state('app.play', {
+        cache: false,
         url: '/play',
         views: {
             'menuContent': {
                 templateUrl: 'templates/match/play.html',
                 controller: 'PlayController',
                 controllerAs: 'vm',
-                resolve:{
-                  Matchs:['$http', 'PATHS', function($http, PATHS){
-                    return $http.get(PATHS.api + '/match');
-                  }]
-                }
-            }
+            },
         },
+        resolve:{
+          Matchs:['$http', 'PATHS', 'LoginService', 'toaster', '$state', '$ionicLoading', 
+          function($http, PATHS, LoginService, toaster, $state, $ionicLoading){
+            if(!LoginService.getUser().complete){
+              $ionicLoading.hide();
+              toaster.pop({type:'error', body:'Debe completar su perfil primero.'});
+              $state.go('app.profile');
+            }
+            return $http.get(PATHS.api + '/match');
+          }],
+        },
+        authenticate: true,
 
     })
     .state('app.play-detail', {
+        cache: false,
         url: '/play/:id',
         views: {
             'menuContent': {
@@ -36,9 +45,11 @@ angular
             }
         },
         resolve:{
-          Match:['$http', 'PATHS', '$stateParams', function($http, PATHS, $stateParams){
+          Match:['$http', 'PATHS', '$stateParams', 'LoginService', 'toaster', '$state', 
+          function($http, PATHS, $stateParams, LoginService, toaster, $state){
             return $http.get(PATHS.api + '/match/'+$stateParams.id);
           }]
-        }
+        },
+        authenticate: true,
     });
   }]);

@@ -1,0 +1,74 @@
+<ion-view view-title='<img src="./img/logo-header.png"/>' hide-back-button="true">
+    <ion-content class="profile matchDetail suggestedPlayers">
+        <h1>Queres invitar a alguien?</h1>
+        <div id="imageBox">
+            <div class="leftBracket"></div>
+            <div class="centerBracket">
+                <div class="text" style="text-align: center;margin: auto;
+    margin-top: 15px;
+    font-size: 18px;
+    color: #818184;
+    font-family: Open Sans;">
+                    Aquí encontrarás los usuarios que les puede interesar tu partido
+                </div>
+            </div>
+            <div class="rightBracket"></div>
+        </div>
+        <div class="usersGrid container" style="text-align: center;">
+            <div class="row" ng-show="vm.users.length">
+                <div class="userBox col-xs-3" ng-repeat="user in vm.users" style="margin: 0 auto;margin-top: 30px;">
+                    <div class="leftBracket"></div>
+                    <div class="centerBracket">
+                        <div class="level-1">
+                            <div class="imgContainer">
+                                <img ng-if="!user.image || user.image ===''" src="./img/profile/profile-blank.png" style="border-radius: 150px; width: 116px;">
+                                <img ng-if="user.image && user.image !==''" ng-src="{{user.image}}" style="border-radius: 150px; width: 116px;">
+                            </div>
+                        </div>
+                        <div class="level-2">
+                            <div class="userName" style="font-family: RobotoLight;
+        font-size: 16px;
+        font-weight: 700;
+        max-width: 195px;
+        color: #000;
+        text-decoration: none;">
+                                <a style="color: #000;text-decoration: none;">{{user.name}}</a>
+                            </div>
+                            <button type="button" class="btn" ng-click="vm.invite(user.id)" ng-disabled="vm.stopSave">Invitar</button>
+                        </div>
+                    </div>
+                    <div class="rightBracket"></div>
+                </div>
+            </div>
+            <div ng-show="!vm.users.length && vm.other_players.length" class="info" style="text-align: center;
+        margin-top: 50px;
+        color: #20a3d4;font-family: Open Sans">
+                <span>No encontramos ningún jugador con tus requisitos, debajo verás otros con requisitos similares.</span>
+                <div class="row" ng-show="vm.other_players.length">
+                <div class="userBox col-xs-3" ng-repeat="user in vm.other_players" style="margin: 0 auto;margin-top: 30px;">
+                    <div class="leftBracket"></div>
+                        <div class="centerBracket">
+                            <div class="level-1">
+                                <div class="imgContainer">
+                                    <img ng-src="{{user.image}}" style="border-radius: 150px; width: 116px;">
+                                </div>
+                            </div>
+                            <div class="level-2">
+                                <div class="userName" style="font-family: RobotoLight;font-size: 16px;font-weight: 700;max-width: 195px;color: #000;text-decoration: none;">
+                                    <a style="color: #000;text-decoration: none;">{{user.name}}</a>
+                                </div>
+                                <button type="button" class="btn" ng-click="vm.invite(user.id)" ng-disabled="vm.stopSave">Invitar</button>
+                            </div>
+                        </div>
+                        <div class="rightBracket"></div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="!vm.users.length && !vm.other_players.length" class="info" style="text-align: center;
+        margin-top: 50px;
+        color: #20a3d4;font-family: Open Sans">
+                <span>No encontramos ningún jugador con tus requisitos, ni con requisitos similares.</span>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
