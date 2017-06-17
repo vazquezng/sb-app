@@ -195,7 +195,7 @@ gulp.task('git-check', function(done) {
 
 gulp.task('deploy', shell.task([
   'cordova platform rm android',
-  'cordova platform add android',
+  'cordova platform add android@6.1.2',
   'ionic build android',
   'cordova build android --release',
   'jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore debug.keystore platforms/android/build/outputs/apk/android-release-unsigned.apk Slambow -storepass android',

@@ -39,6 +39,7 @@ export class LoginController
         var setUserApi = (data)=>{
             vm.$http.post(vm.PATHS.api+'/auth', {accessToken: data.accessToken, id: data.userID})
             .then(function(resp:any){
+              console.log(resp.data);
                 vm.LoginService.login(resp.data);
             });
         };
