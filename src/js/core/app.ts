@@ -65,7 +65,7 @@ angular.module(APP.NAME, APP.DEPENDENCIES)
           // display new view from top
           $window.scrollTo(0, 0);
         });
-        $rootScope.$on('$stateChangeStart', 
+        $rootScope.$on('$stateChangeStart',
         function(){
           $ionicLoading.show({
             template: `<ion-spinner class="tc-spinner"></ion-spinner>`,
@@ -110,7 +110,7 @@ angular.module(APP.NAME, APP.DEPENDENCIES)
               }
               $state.go('app.profile', {}, {replace: true});
             };
-            /* 
+            /*
             document.addEventListener('backbutton', function (event) {
               event.preventDefault();
               event.stopPropagation();
@@ -125,18 +125,18 @@ angular.module(APP.NAME, APP.DEPENDENCIES)
                   template: 'Desea salir de la aplicación?',
                 }).then(function(res) {
                   if (res) {
-                    (<any>navigator).app.exitApp(); 
+                    (<any>navigator).app.exitApp();
                   }
                 });
               }else {
-                (<any>navigator).app.backHistory(); 
+                (<any>navigator).app.backHistory();
                 // const $backView = $ionicHistory.backView();
                 // $backView.go();
               }
             }, 100);
             // Enable to debug issues.
             // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
-            
+
             var notificationOpenedCallback = function(jsonData) {
               console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
               if(jsonData.section){
@@ -161,14 +161,14 @@ angular.module(APP.NAME, APP.DEPENDENCIES)
                   window.localStorage.setItem('onesignal-userId', ids.userId);
                   window.localStorage.setItem('onesignal-pushToken', ids.pushToken);
                 })
-                
+
               // Call syncHashedEmail anywhere in your app if you have the user's email.
               // This improves the effectiveness of OneSignal's "best-time" notification scheduling feature.
               // window.plugins.OneSignal.syncHashedEmail(userEmail);
             }catch(e){
               console.log(e);
             }
-           
+
         });
     }]);
 

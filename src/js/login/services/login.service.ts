@@ -16,11 +16,13 @@ function LoginService($state, $rootScope, $http, PATHS){
     this.login = function(data){
         user = data.user;
 
+        console.log('window.localStorage.setItem');
+        console.log(localStorage);
         window.localStorage.setItem('token', data.token.token);
         window.localStorage.setItem('user', JSON.stringify(data.user));
 
         if(window.localStorage.getItem('onesignal-userId')){
-          if(data.user.onesignal_app_userId !== window.localStorage.getItem('onesignal-userId') 
+          if(data.user.onesignal_app_userId !== window.localStorage.getItem('onesignal-userId')
             || data.user.onesignal_app_pushToken !== window.localStorage.getItem('onesignal-pushToken')){
             const user = data.user;
             user.onesignal_app_userId = window.localStorage.getItem('onesignal-userId');

@@ -27,6 +27,7 @@ require('./js/my_califications/my_califications.module.ts');
 require('./js/feedback/feedback.module.ts');
 require('./js/achievements/achievements.module.ts');
 require('./js/suggested_players/suggested_players.module.ts');
+
 window.validaNumber = function (e) {
     let tecla = (document.all) ? e.keyCode : e.which;
     //Tecla de retroceso para borrar, siempre la permite

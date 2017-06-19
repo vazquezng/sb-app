@@ -36,7 +36,7 @@ const URL_BUCKET = {
 
 process.env.ENVIRONMENT = 'dev';
 process.env.URL_BUCKET = URL_BUCKET[process.env.ENVIRONMENT];
-process.env.URL_API = 'http://api.socialtenis.dev/api/v1';//'http://192.168.33.10/api/v1';
+process.env.URL_API = 'http://api.slambow.com/api/v1';//'http://192.168.33.10/api/v1';
 process.env.FACEBOOK_ID = '188438681613821';
 process.env.TWITTER_ID = '';
 

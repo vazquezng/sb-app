@@ -14,6 +14,7 @@ import 'angular-google-maps';
 
 import 'angularjs-toaster';
 
+// import { NativeStorage} from '@ionic-native/native-storage';
 //require('angular-ui-bootstrap/dist/ui-bootstrap-tpls.js');
 
 moment.locale('es');
