@@ -17,15 +17,15 @@
                 <!--span>17.12.16 - 16:30</span-->
             </div>
         </div>
-        <div class="group">
+        <div class="group" style="justify-content: center;">
             <div class="item">
                 <div class="clubName" ng-bind="vm.match.club_name"></div>
                 <div class="separator"></div>
                 <div class="address" ng-bind="vm.match.address.substr(0, 30)"></div>
             </div>
-            <div class="item">
+            <!--div class="item">
                 <img class="mapImg" src="./img/match/mock-map.png" ng-click="vm.openMaps(match.address_lat, match.address_lng)" />
-            </div>
+            </div-->
         </div>
         <div class="group" style="justify-content: center;">
           <div class="item">
@@ -33,12 +33,12 @@
           </div>
         </div>
         <div class="group" style="justify-content: center;">
-            <div class="item" style="text-transform: uppercase;">
+            <div class="item" style="text-transform: uppercase;text-align: center;">
                 Mirá los jugadores <span>ya anotados</span>
             </div>
         </div>
         <div class="playerGrid">
-            <div class="row">
+            <div class="row" style="overflow-x: scroll;">
                 <div class="col-xs-3 col-center-block" ng-repeat="player in vm.match.matchPlayer">
                     <div class="imgContainer">
                         <img ng-src="{{player.user.image}}" ng-if="::player.user.image!= '' && player.user.image!= null" />

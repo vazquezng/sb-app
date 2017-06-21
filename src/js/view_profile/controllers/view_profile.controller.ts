@@ -11,7 +11,6 @@ class ProfileController {
     public city;
     public address;
     public modalInstance;
-    public availabilityList = [];
     public completeForm =false;
     private emailFormat = /^[a-z]+[a-z0-9._\-]+@[a-z]+\.[a-z]{2,5}\.?[a-z]{0,5}$/;
 
@@ -25,7 +24,9 @@ class ProfileController {
         if(!LoginService.isAuth()){
             $state.go('login');
         }
-
+        try{
+          (<any>window).navigator.splashscreen.hide();
+        }catch(e){console.log(e);}
         this.user = LoginService.getUser();
         vm =  this;
         vm.avatar = this.user.image && this.user.image !== '' ? this.user.image : (<any>window).URL_BUCKET+'/img/profile/profile-blank.png';
@@ -107,31 +108,9 @@ class ProfileController {
         console.log('Failed because: ' + message);
     }
 
-    private  saveAvailability(){
-        var params = {availability: this.availabilityList};
-        const vm = this;
-        this.$http.post(this.PATHS.api + '/user/saveAvailability', params).then(function(resp){
-            if(resp.data.success){
-                vm.toaster.pop({type: 'success', body: 'Tu disponibilidad se guardo correctamente!',timeout: 2000});
-                vm.modalInstance.close();
-            }else{
-                vm.toaster.pop({type: 'error', body: 'Ocurrió un error al guardar tu disponibilidad',timeout: 2000});
-            }
-        });
-    }
-
     public goAvailability(){
         (<any>window).localStorage.setItem('UserTmp-profile', JSON.stringify(this.user));
         this.$state.go('app.profile-availability');
-    }
-
-    public updateAvailability(weekDay, time){
-        var index = this.availabilityList.indexOf(weekDay+'-'+time);
-        if(index == -1){
-          this.availabilityList[this.availabilityList.length] = weekDay+'-'+time;
-        }else{
-          this.availabilityList.splice(index,1);
-        }
     }
 
     private getCountryFromAddress(){
@@ -189,37 +168,73 @@ class ProfileAvailabilityController {
 
     public availabilityList = [];
     public completeForm =false;
-    public timeList = [ '08:00','08:30',
-                        '09:00','09:30',
-                        '10:00','10:30',
-                        '11:00','11:30',
-                        '12:00','12:30',
-                        '13:00','13:30',
-                        '14:00','14:30',
-                        '15:00','15:30',
-                        '16:00','16:30',
-                        '17:00','17:30',
-                        '18:00','18:30',
-                        '19:00','19:30',
-                        '20:00','20:30',
-                        '21:00','21:30',
-                        '22:00','22:30',
-                        '23:00','23:30'];
+    public timeList = [ 'DE 8 A 23HS.','DE 8 A 12HS.',
+                        'DE 12 A 19HS.','DE 19 A 23HS.'];
+    //always y allDay son variables auxiliares para ahorrar control en el html.
+    public always = false;
+    public availability =[{allDay: false, morning: false, evening: false, night: false},
+                          {allDay: false, morning: false, evening: false, night: false},
+                          {allDay: false, morning: false, evening: false, night: false},
+                          {allDay: false, morning: false, evening: false, night: false},
+                          {allDay: false, morning: false, evening: false, night: false},
+                          {allDay: false, morning: false, evening: false, night: false},
+                          {allDay: false, morning: false, evening: false, night: false}];
     public dayList = [ 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
     constructor (private Availability, private LoginService, private $http, private $state, private PATHS, private toaster){
         if(!LoginService.isAuth()){
             $state.go('login');
         }
 
-        this.availabilityList = Availability.data.availability;
+        this.availability = Availability.data.availability;
     }
 
     public back(){
         this.$state.go('app.profile');
     }
 
+    //A la función se le envía el nombre del check box y su valor actual.
+    public updateChecks(name, value, $index){
+
+        //Se invierte el valor actual para cambiar su estado
+        value = !value;
+        //Si es todos los días en cualquier horario, se modifican todos los check boxs con el nuevo valor
+        if(name == 'always'){
+            this.availability =[  {allDay: value, morning: value, evening: value, night: value},    //LUNES
+                                  {allDay: value, morning: value, evening: value, night: value},    //MARTES
+                                  {allDay: value, morning: value, evening: value, night: value},    //MIÉRCOLES
+                                  {allDay: value, morning: value, evening: value, night: value},    //JUEVES
+                                  {allDay: value, morning: value, evening: value, night: value},    //VIERNES
+                                  {allDay: value, morning: value, evening: value, night: value},    //SÁBADO
+                                  {allDay: value, morning: value, evening: value, night: value}];   //DOMINGO
+            this.always = value;
+        }
+        //Si es en cualquier horario de ese día, se modifican todos los checkbox de ese tab
+        else if(name == 'allDay'){
+            this.availability[$index]={allDay: value, morning: value, evening: value, night: value};
+            this.availability[$index].allDay = value;
+        // Si no es ninguno de los otros, es un momento específico de un día, se cambia ese valor
+        }else {
+            this.availability[$index][name] = value;
+        }
+
+        //acá se actualizan los check box para todo el día y todos los días
+        this.availability[$index].allDay =
+            this.availability[$index].morning &&
+            this.availability[$index].evening &&
+            this.availability[$index].night;
+
+        this.always =
+            this.availability[0].allDay &&
+            this.availability[1].allDay &&
+            this.availability[2].allDay &&
+            this.availability[3].allDay &&
+            this.availability[4].allDay &&
+            this.availability[5].allDay &&
+            this.availability[6].allDay;
+    }
+
     public save(){
-        var params = {availability: this.availabilityList};
+        var params = {availability: this.availability};
         const vm = this;
         this.$http.post(this.PATHS.api + '/user/saveAvailability', params).then(function(resp){
             if(resp.data.success){
@@ -228,15 +243,6 @@ class ProfileAvailabilityController {
                 vm.toaster.pop({type: 'error', body: 'Ocurrió un error al guardar tu disponibilidad', timeout: 2000});
             }
         });
-    }
-
-    public updateAvailability(weekDay, time){
-        var index = this.availabilityList.indexOf(weekDay+'-'+time);
-        if(index == -1){
-            this.availabilityList[this.availabilityList.length] = weekDay+'-'+time;
-        }else{
-            this.availabilityList.splice(index,1);
-        }
     }
 }
 

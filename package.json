@@ -3,10 +3,6 @@
   "version": "1.1.1",
   "description": "sb-app: An Ionic project",
   "dependencies": {
-    "@angular/core": "^4.2.3",
-    "@ionic-native/core": "^3.12.1",
-    "@ionic-native/native-storage": "^3.12.1",
-    "@ionic-native/twitter-connect": "^3.4.4",
     "angular": "^1.6.1",
     "angular-animate": "^1.6.1",
     "angular-google-maps": "^2.4.1",
@@ -63,8 +59,7 @@
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [
-    "ios",
-    {
+    "ios", {
       "platform": "ios",
       "version": "",
       "locator": "ios"

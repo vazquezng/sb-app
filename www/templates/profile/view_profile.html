@@ -56,39 +56,31 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col">
-                    <select class="form-control minimal" name="inputGameLevel" id="inputGameLevel" ng-model="vm.user.game_level" required>
-                            <option value="2.5">2.5</option>
-                            <option value="3">3.0</option>
-                            <option value="3.5">3.5</option>
-                            <option value="4">4.0</option>
-                            <option value="4.5">4.5</option>
-                            <option value="5">5.0</option>
-                            <option value="5.5">5.5</option>
-                            <option value="6">6.0</option>
-                            <option value="6.5">6.5</option>
-                            <option value="7">7.0</option>
-                        </select>
-                    <label>NIVEL DE JUEGO</label>
-                </div>
-                <div class="col">
-                    <select class="form-control minimal" name="inputITN" id="inputITN" ng-model="vm.user.itn" required>
-                            <option ng-repeat="itn in ::[1,2,3,4,5,6,7,8,9,10]" value="{{itn}}">{{itn}}</option>
-                        </select>
-                    <label>ITN</label>
-                </div>
+            <div style="padding: 5px;">
+              <select class="form-control minimal" name="inputGameLevel" id="inputGameLevel" ng-model="vm.user.game_level" required>
+                  <option value="2.5">2.5</option>
+                  <option value="3">3.0</option>
+                  <option value="3.5">3.5</option>
+                  <option value="4">4.0</option>
+                  <option value="4.5">4.5</option>
+                  <option value="5">5.0</option>
+                  <option value="5.5">5.5</option>
+                  <option value="6">6.0</option>
+                  <option value="6.5">6.5</option>
+                  <option value="7">7.0</option>
+              </select>
+              <label>NIVEL DE JUEGO</label>
             </div>
 
             <div class="row" style="padding-top: 19px;">
                 <div class="col">
-                    <div class="form-group">
+                    <div class="form-group" style="text-align: center;">
                         <input type="checkbox" class="form-control" ng-model="vm.user.single"/>
-                        <label for="inputCity">SINLGES</label>
+                        <label for="inputCity">SINGLES</label>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="form-group">
+                    <div class="form-group" style="text-align: center;">
                         <input type="checkbox" class="form-control" ng-model="vm.user.double"/>
                         <label for="inputCity">DOBLES</label>
                     </div>

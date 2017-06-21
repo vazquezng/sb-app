@@ -10,6 +10,7 @@ export class LoginController
             // User isn’t authenticated
             $state.transitionTo("app.profile");
         }
+        (<any>window).navigator.splashscreen.hide();
     }
 
     public authenticate = function(provider:string){
@@ -100,25 +101,5 @@ export class LoginController
     }
 }
 
-class AuthTwitterController{
-    static $inject = ['User', 'LoginService', '$stateParams'];
-
-    constructor(private User, private LoginService, private $stateParams){
-        let data:any = {};
-
-        data.user = User.data.user;
-        data.token = {token: $stateParams.token};
-        if($stateParams.newuser == 'true'){
-            data.newuser =true;
-        }else{
-            data.newuser = false;
-            data.state = 'app.home';
-        }
-
-        LoginService.login(data);
-    }
-}
-
 angular.module('Login')
-        .controller('LoginController', ['$http', 'PATHS', 'LoginService', '$ionicLoading', '$state', LoginController])
-        .controller('AuthTwitterController', ['User', 'LoginService', '$stateParams', AuthTwitterController]);
+        .controller('LoginController', ['$http', 'PATHS', 'LoginService', '$ionicLoading', '$state', LoginController]);

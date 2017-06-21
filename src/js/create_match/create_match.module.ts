@@ -9,6 +9,7 @@ angular
   .module('CreateMatch')
   .config(['$stateProvider', function($stateProvider){
     $stateProvider.state('app.createMatch', {
+      cache: false,
         url: '/create-match',
         views: {
             'menuContent': {

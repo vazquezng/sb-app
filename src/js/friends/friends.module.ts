@@ -11,6 +11,7 @@ angular
   .config(['$stateProvider', function($stateProvider){
     //const tplAppFriends = <string> require('./views/friends.html');
     $stateProvider.state('app.friends', {
+      cache: false,
         url: '/friends',
         templateUrl: './templates/friends/friends.html',
         controller: 'FriendsController',
