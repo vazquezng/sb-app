@@ -108,11 +108,11 @@ export class CreateMatchController
 
     public save(form){
         if(!this.validateTime()){
-           return; 
+           return;
         }
 
         if(!this.validateDateTime()){
-           return; 
+           return;
         }
 
         const vm = this;
@@ -131,7 +131,11 @@ export class CreateMatchController
                 }
             });
         }else{
-            this.toaster.pop({type:'info', body:'Debe completar todos los datos.'})
+          if (this.match.years_from<=17) {
+            this.toaster.pop({type:'info', body:'La edad del jugador debe ser apartir de los 18.'});
+          } else {
+            this.toaster.pop({type:'info', body:'Debe completar todos los datos.'});
+          }
         }
     }
 }

@@ -15,7 +15,7 @@ angular.module(APP.NAME, APP.DEPENDENCIES)
 
         //$locationProvider.html5Mode(true).hashPrefix('*');
         console.log('/login');
-        $urlRouterProvider.otherwise('/profile');
+        $urlRouterProvider.otherwise('/login');
     }])
     .config(['$httpProvider', function($httpProvider){
       $httpProvider.interceptors.push(['$q', '$location', '$rootScope', function ($q, $location, $rootScope) {

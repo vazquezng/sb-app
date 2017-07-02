@@ -9876,7 +9876,7 @@ a.button {
     .play .usersGrid .userBox .centerBracket {
       display: flex;
       border-bottom: 1px solid #bbbbbb;
-      justify-content: space-between; }
+      justify-content: space-around; }
       .play .usersGrid .userBox .centerBracket .separator {
         border-bottom: 1px solid #20a3d4;
         width: 70%;

@@ -10,7 +10,9 @@ export class LoginController
             // User isn’t authenticated
             $state.transitionTo("app.profile");
         }
-        (<any>window).navigator.splashscreen.hide();
+        try{
+          (<any>window).navigator.splashscreen.hide();
+        }catch(e){console.log(e);}
     }
 
     public authenticate = function(provider:string){

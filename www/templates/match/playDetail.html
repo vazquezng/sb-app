@@ -32,6 +32,34 @@
             <img ng-src="./img/play/{{vm.match.type}}-btn.png" />
           </div>
         </div>
+        <div class="row-form">
+            <div style="display: flex;justify-content: space-around;margin-top:5px;">
+              <div class="form-group">
+                  <input type="text" class="form-control" name="inputGameLevel" id="inputGameLevel" ng-model="vm.match.game_level_from" disabled="true" />
+                  <label for="inputGameLevel">Nivel de juego desde</label>
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control" name="inputGameLevel" id="inputGameLevel" ng-model="vm.match.game_level_to" disabled="true" />
+                  <label for="inputGameLevel">Nivel de juego hasta</label>
+              </div>
+            </div>
+        </div>
+        <div class="row-form">
+            <div style="display: flex;justify-content: space-around;margin-top:5px;">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="inputAge" id="inputAge" ng-model="vm.match.years_from" disabled="true" />
+                    <label for="inputAge">Edad Desde</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="inputAge" id="inputAge" ng-model="vm.match.years_to" disabled="true" />
+                    <label for="inputAge">Edad Hasta</label>
+                </div>
+            </div>
+            <div class="form-group" style="padding: 0 12px;margin-top:5px;">
+                <input type="text" class="form-control" name="inputGender" id="inputGender" ng-model="vm.match.sexo" disabled="true" />
+                <label for="inputGender">Sexo</label>
+            </div>
+        </div>
         <div class="group" style="justify-content: center;">
             <div class="item" style="text-transform: uppercase;text-align: center;">
                 Mirá los jugadores <span>ya anotados</span>
